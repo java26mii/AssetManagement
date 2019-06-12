@@ -9,12 +9,12 @@ package view;
  *
  * @author erik
  */
-public class peminjamanEmployee extends javax.swing.JInternalFrame {
+public class ApprovalDepartment extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form peminjamanEmployee
      */
-    public peminjamanEmployee() {
+    public ApprovalDepartment() {
         initComponents();
     }
 
@@ -48,6 +48,7 @@ public class peminjamanEmployee extends javax.swing.JInternalFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
+        btn_delete1 = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -111,14 +112,14 @@ public class peminjamanEmployee extends javax.swing.JInternalFrame {
 
         jButton4.setText("Clear");
 
-        btn_insert.setText("Ajukan");
+        btn_insert.setText("Setujui");
         btn_insert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_insertActionPerformed(evt);
             }
         });
 
-        btn_delete.setText("Batalkan");
+        btn_delete.setText("Tolak");
         btn_delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_deleteActionPerformed(evt);
@@ -146,13 +147,20 @@ public class peminjamanEmployee extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel9.setText("Tanggal Pinjam");
+        jLabel9.setText("Tanggal Pengajuan");
 
         jLabel10.setText("Tanggal Kembali");
 
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField6ActionPerformed(evt);
+            }
+        });
+
+        btn_delete1.setText("Delete");
+        btn_delete1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_delete1ActionPerformed(evt);
             }
         });
 
@@ -213,10 +221,12 @@ public class peminjamanEmployee extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(301, 301, 301)
                 .addComponent(btn_insert)
-                .addGap(18, 18, 18)
-                .addComponent(jButton4)
-                .addGap(18, 18, 18)
+                .addGap(26, 26, 26)
                 .addComponent(btn_delete)
+                .addGap(18, 18, 18)
+                .addComponent(btn_delete1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton4)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -251,7 +261,8 @@ public class peminjamanEmployee extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4)
                     .addComponent(btn_insert)
-                    .addComponent(btn_delete))
+                    .addComponent(btn_delete)
+                    .addComponent(btn_delete1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -312,9 +323,14 @@ public class peminjamanEmployee extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField6ActionPerformed
 
+    private void btn_delete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_delete1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_delete1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_delete;
+    private javax.swing.JButton btn_delete1;
     private javax.swing.JButton btn_insert;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;

@@ -28,6 +28,7 @@ public class MainFrameDepartment extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         regionItem = new javax.swing.JMenuItem();
         jobItem = new javax.swing.JMenuItem();
+        jobItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,6 +64,14 @@ public class MainFrameDepartment extends javax.swing.JFrame {
         });
         jMenu1.add(jobItem);
 
+        jobItem1.setText("Kirim Tagihan");
+        jobItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jobItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jobItem1);
+
         jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
@@ -88,7 +97,7 @@ public class MainFrameDepartment extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void regionItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regionItemActionPerformed
-        peminjamanDepartment department = new peminjamanDepartment();
+        ApprovalDepartment department = new ApprovalDepartment();
         this.jDesktopPane1.add(department);
         department.show();
     }//GEN-LAST:event_regionItemActionPerformed
@@ -99,6 +108,13 @@ public class MainFrameDepartment extends javax.swing.JFrame {
         this.jDesktopPane1.add(employee);
         employee.show();
     }//GEN-LAST:event_jobItemActionPerformed
+
+    private void jobItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jobItem1ActionPerformed
+        // TODO add your handling code here:
+        emailTagihan tagihan = new emailTagihan();
+        this.jDesktopPane1.add(tagihan);
+        tagihan.show();
+    }//GEN-LAST:event_jobItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -119,6 +135,7 @@ public class MainFrameDepartment extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jobItem;
+    private javax.swing.JMenuItem jobItem1;
     private javax.swing.JMenuItem regionItem;
     // End of variables declaration//GEN-END:variables
 }

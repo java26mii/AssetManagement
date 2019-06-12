@@ -79,7 +79,7 @@ public class MainFrameEmployee extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void regionItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regionItemActionPerformed
-        peminjamanDepartment peminjaman = new peminjamanDepartment();
+        ApprovalDepartment peminjaman = new ApprovalDepartment();
         this.jDesktopPane1.add(peminjaman);
         peminjaman.show();
     }//GEN-LAST:event_regionItemActionPerformed
