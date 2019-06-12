@@ -5,6 +5,9 @@
  */
 package assetmanagement;
 
+import org.hibernate.SessionFactory;
+import tools.HibernateUtil;
+
 /**
  *
  * @author erik
@@ -16,6 +19,8 @@ public class AssetManagement {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+              SessionFactory factory = HibernateUtil.getSessionFactory();
+        System.out.println(factory);
     }
     
 }
