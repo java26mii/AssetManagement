@@ -6,6 +6,7 @@
 package models;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,6 +17,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -23,18 +26,23 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author WINDOWS 10
  */
 @Entity
-@Table(name = "REPAIRSTATUS")
+@Table(name = "REPAIR_STATUS")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Repairstatus.findAll", query = "SELECT r FROM Repairstatus r")
-    , @NamedQuery(name = "Repairstatus.findById", query = "SELECT r FROM Repairstatus r WHERE r.id = :id")})
-public class Repairstatus implements Serializable {
+    @NamedQuery(name = "RepairStatus.findAll", query = "SELECT r FROM RepairStatus r")
+    , @NamedQuery(name = "RepairStatus.findById", query = "SELECT r FROM RepairStatus r WHERE r.id = :id")
+    , @NamedQuery(name = "RepairStatus.findByDateRepair", query = "SELECT r FROM RepairStatus r WHERE r.dateRepair = :dateRepair")})
+public class RepairStatus implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
+    @Basic(optional = false)
+    @Column(name = "DATE_REPAIR")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateRepair;
     @JoinColumn(name = "REPAIR", referencedColumnName = "ID")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Repair repair;
@@ -42,11 +50,16 @@ public class Repairstatus implements Serializable {
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Status status;
 
-    public Repairstatus() {
+    public RepairStatus() {
     }
 
-    public Repairstatus(Long id) {
+    public RepairStatus(Long id) {
         this.id = id;
+    }
+
+    public RepairStatus(Long id, Date dateRepair) {
+        this.id = id;
+        this.dateRepair = dateRepair;
     }
 
     public Long getId() {
@@ -55,6 +68,14 @@ public class Repairstatus implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Date getDateRepair() {
+        return dateRepair;
+    }
+
+    public void setDateRepair(Date dateRepair) {
+        this.dateRepair = dateRepair;
     }
 
     public Repair getRepair() {
@@ -83,10 +104,10 @@ public class Repairstatus implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Repairstatus)) {
+        if (!(object instanceof RepairStatus)) {
             return false;
         }
-        Repairstatus other = (Repairstatus) object;
+        RepairStatus other = (RepairStatus) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -95,7 +116,7 @@ public class Repairstatus implements Serializable {
 
     @Override
     public String toString() {
-        return "models.Repairstatus[ id=" + id + " ]";
+        return "models.RepairStatus[ id=" + id + " ]";
     }
     
 }

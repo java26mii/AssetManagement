@@ -37,7 +37,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Employee.findByLastName", query = "SELECT e FROM Employee e WHERE e.lastName = :lastName")
     , @NamedQuery(name = "Employee.findByEmail", query = "SELECT e FROM Employee e WHERE e.email = :email")
     , @NamedQuery(name = "Employee.findByPhoneNumber", query = "SELECT e FROM Employee e WHERE e.phoneNumber = :phoneNumber")
-    , @NamedQuery(name = "Employee.findByIsdelete", query = "SELECT e FROM Employee e WHERE e.isdelete = :isdelete")})
+    , @NamedQuery(name = "Employee.findByIsDelete", query = "SELECT e FROM Employee e WHERE e.isDelete = :isDelete")})
 public class Employee implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -58,18 +58,10 @@ public class Employee implements Serializable {
     @Column(name = "PHONE_NUMBER")
     private long phoneNumber;
     @Basic(optional = false)
-    @Column(name = "ISDELETE")
-    private Character isdelete;
+    @Column(name = "IS_DELETE")
+    private Character isDelete;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "employee", fetch = FetchType.LAZY)
-    private List<Employeejob> employeejobList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "manager", fetch = FetchType.LAZY)
-    private List<Loaning> loaningList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "employee", fetch = FetchType.LAZY)
-    private List<Loaning> loaningList1;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "manager", fetch = FetchType.LAZY)
-    private List<Repair> repairList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "employee", fetch = FetchType.LAZY)
-    private List<Repair> repairList1;
+    private List<EmployeeJob> employeeJobList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "manager", fetch = FetchType.LAZY)
     private List<Employee> employeeList;
     @JoinColumn(name = "MANAGER", referencedColumnName = "ID")
@@ -78,7 +70,11 @@ public class Employee implements Serializable {
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "employee", fetch = FetchType.LAZY)
     private Account account;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "employee", fetch = FetchType.LAZY)
-    private List<Employeerole> employeeroleList;
+    private List<Repair> repairList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "employee", fetch = FetchType.LAZY)
+    private List<EmployeeRole> employeeRoleList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "employee", fetch = FetchType.LAZY)
+    private List<Loaning> loaningList;
 
     public Employee() {
     }
@@ -87,13 +83,22 @@ public class Employee implements Serializable {
         this.id = id;
     }
 
-    public Employee(Long id, String firstName, String lastName, String email, long phoneNumber, Character isdelete) {
+    public Employee(Long id, String firstName, String lastName, String email, long phoneNumber, Character isDelete) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.isdelete = isdelete;
+        this.isDelete = isDelete;
+    }
+    
+        public Employee(Long id, String firstName, String lastName, String email, long phoneNumber, Employee manager) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.manager = manager;
     }
 
     public Long getId() {
@@ -136,57 +141,21 @@ public class Employee implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
-    public Character getIsdelete() {
-        return isdelete;
+    public Character getIsDelete() {
+        return isDelete;
     }
 
-    public void setIsdelete(Character isdelete) {
-        this.isdelete = isdelete;
-    }
-
-    @XmlTransient
-    public List<Employeejob> getEmployeejobList() {
-        return employeejobList;
-    }
-
-    public void setEmployeejobList(List<Employeejob> employeejobList) {
-        this.employeejobList = employeejobList;
+    public void setIsDelete(Character isDelete) {
+        this.isDelete = isDelete;
     }
 
     @XmlTransient
-    public List<Loaning> getLoaningList() {
-        return loaningList;
+    public List<EmployeeJob> getEmployeeJobList() {
+        return employeeJobList;
     }
 
-    public void setLoaningList(List<Loaning> loaningList) {
-        this.loaningList = loaningList;
-    }
-
-    @XmlTransient
-    public List<Loaning> getLoaningList1() {
-        return loaningList1;
-    }
-
-    public void setLoaningList1(List<Loaning> loaningList1) {
-        this.loaningList1 = loaningList1;
-    }
-
-    @XmlTransient
-    public List<Repair> getRepairList() {
-        return repairList;
-    }
-
-    public void setRepairList(List<Repair> repairList) {
-        this.repairList = repairList;
-    }
-
-    @XmlTransient
-    public List<Repair> getRepairList1() {
-        return repairList1;
-    }
-
-    public void setRepairList1(List<Repair> repairList1) {
-        this.repairList1 = repairList1;
+    public void setEmployeeJobList(List<EmployeeJob> employeeJobList) {
+        this.employeeJobList = employeeJobList;
     }
 
     @XmlTransient
@@ -215,12 +184,30 @@ public class Employee implements Serializable {
     }
 
     @XmlTransient
-    public List<Employeerole> getEmployeeroleList() {
-        return employeeroleList;
+    public List<Repair> getRepairList() {
+        return repairList;
     }
 
-    public void setEmployeeroleList(List<Employeerole> employeeroleList) {
-        this.employeeroleList = employeeroleList;
+    public void setRepairList(List<Repair> repairList) {
+        this.repairList = repairList;
+    }
+
+    @XmlTransient
+    public List<EmployeeRole> getEmployeeRoleList() {
+        return employeeRoleList;
+    }
+
+    public void setEmployeeRoleList(List<EmployeeRole> employeeRoleList) {
+        this.employeeRoleList = employeeRoleList;
+    }
+
+    @XmlTransient
+    public List<Loaning> getLoaningList() {
+        return loaningList;
+    }
+
+    public void setLoaningList(List<Loaning> loaningList) {
+        this.loaningList = loaningList;
     }
 
     @Override

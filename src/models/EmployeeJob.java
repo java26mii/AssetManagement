@@ -23,12 +23,12 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author WINDOWS 10
  */
 @Entity
-@Table(name = "EMPLOYEEJOBS")
+@Table(name = "EMPLOYEE_JOBS")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Employeejob.findAll", query = "SELECT e FROM Employeejob e")
-    , @NamedQuery(name = "Employeejob.findById", query = "SELECT e FROM Employeejob e WHERE e.id = :id")})
-public class Employeejob implements Serializable {
+    @NamedQuery(name = "EmployeeJob.findAll", query = "SELECT e FROM EmployeeJob e")
+    , @NamedQuery(name = "EmployeeJob.findById", query = "SELECT e FROM EmployeeJob e WHERE e.id = :id")})
+public class EmployeeJob implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -42,10 +42,10 @@ public class Employeejob implements Serializable {
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Job job;
 
-    public Employeejob() {
+    public EmployeeJob() {
     }
 
-    public Employeejob(Long id) {
+    public EmployeeJob(Long id) {
         this.id = id;
     }
 
@@ -83,10 +83,10 @@ public class Employeejob implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Employeejob)) {
+        if (!(object instanceof EmployeeJob)) {
             return false;
         }
-        Employeejob other = (Employeejob) object;
+        EmployeeJob other = (EmployeeJob) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -95,7 +95,7 @@ public class Employeejob implements Serializable {
 
     @Override
     public String toString() {
-        return "models.Employeejob[ id=" + id + " ]";
+        return "models.EmployeeJob[ id=" + id + " ]";
     }
     
 }

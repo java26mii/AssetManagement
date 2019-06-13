@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author WINDOWS 10
  */
 @Entity
-@Table(name = "ASSET")
+@Table(name = "ASSETS")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Asset.findAll", query = "SELECT a FROM Asset a")
@@ -54,9 +54,9 @@ public class Asset implements Serializable {
     @Column(name = "NOTE")
     private String note;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "asset", fetch = FetchType.LAZY)
-    private List<Loaning> loaningList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "asset", fetch = FetchType.LAZY)
     private List<Repair> repairList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "asset", fetch = FetchType.LAZY)
+    private List<Loaning> loaningList;
 
     public Asset() {
     }
@@ -114,21 +114,21 @@ public class Asset implements Serializable {
     }
 
     @XmlTransient
-    public List<Loaning> getLoaningList() {
-        return loaningList;
-    }
-
-    public void setLoaningList(List<Loaning> loaningList) {
-        this.loaningList = loaningList;
-    }
-
-    @XmlTransient
     public List<Repair> getRepairList() {
         return repairList;
     }
 
     public void setRepairList(List<Repair> repairList) {
         this.repairList = repairList;
+    }
+
+    @XmlTransient
+    public List<Loaning> getLoaningList() {
+        return loaningList;
+    }
+
+    public void setLoaningList(List<Loaning> loaningList) {
+        this.loaningList = loaningList;
     }
 
     @Override

@@ -29,7 +29,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Account.findAll", query = "SELECT a FROM Account a")
     , @NamedQuery(name = "Account.findById", query = "SELECT a FROM Account a WHERE a.id = :id")
     , @NamedQuery(name = "Account.findByUsername", query = "SELECT a FROM Account a WHERE a.username = :username")
-    , @NamedQuery(name = "Account.findByPassword", query = "SELECT a FROM Account a WHERE a.password = :password")})
+    , @NamedQuery(name = "Account.findByPassword", query = "SELECT a FROM Account a WHERE a.password = :password")
+    , @NamedQuery(name = "Account.findByIsDelete", query = "SELECT a FROM Account a WHERE a.isDelete = :isDelete")})
 public class Account implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -43,6 +44,9 @@ public class Account implements Serializable {
     @Basic(optional = false)
     @Column(name = "PASSWORD")
     private String password;
+    @Basic(optional = false)
+    @Column(name = "IS_DELETE")
+    private Character isDelete;
     @JoinColumn(name = "ID", referencedColumnName = "ID", insertable = false, updatable = false)
     @OneToOne(optional = false, fetch = FetchType.LAZY)
     private Employee employee;
@@ -54,10 +58,11 @@ public class Account implements Serializable {
         this.id = id;
     }
 
-    public Account(Long id, String username, String password) {
+    public Account(Long id, String username, String password, Character isDelete) {
         this.id = id;
         this.username = username;
         this.password = password;
+        this.isDelete = isDelete;
     }
 
     public Long getId() {
@@ -82,6 +87,14 @@ public class Account implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Character getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(Character isDelete) {
+        this.isDelete = isDelete;
     }
 
     public Employee getEmployee() {

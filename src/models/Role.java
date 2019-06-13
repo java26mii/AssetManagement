@@ -30,7 +30,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Role.findAll", query = "SELECT r FROM Role r")
     , @NamedQuery(name = "Role.findById", query = "SELECT r FROM Role r WHERE r.id = :id")
-    , @NamedQuery(name = "Role.findByName", query = "SELECT r FROM Role r WHERE r.name = :name")})
+    , @NamedQuery(name = "Role.findByName", query = "SELECT r FROM Role r WHERE r.name = :name")
+    , @NamedQuery(name = "Role.findByIsDelete", query = "SELECT r FROM Role r WHERE r.isDelete = :isDelete")})
 public class Role implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -41,8 +42,11 @@ public class Role implements Serializable {
     @Basic(optional = false)
     @Column(name = "NAME")
     private String name;
+    @Basic(optional = false)
+    @Column(name = "IS_DELETE")
+    private Character isDelete;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "role", fetch = FetchType.LAZY)
-    private List<Employeerole> employeeroleList;
+    private List<EmployeeRole> employeeRoleList;
 
     public Role() {
     }
@@ -51,9 +55,10 @@ public class Role implements Serializable {
         this.id = id;
     }
 
-    public Role(Long id, String name) {
+    public Role(Long id, String name, Character isDelete) {
         this.id = id;
         this.name = name;
+        this.isDelete = isDelete;
     }
 
     public Long getId() {
@@ -72,13 +77,21 @@ public class Role implements Serializable {
         this.name = name;
     }
 
-    @XmlTransient
-    public List<Employeerole> getEmployeeroleList() {
-        return employeeroleList;
+    public Character getIsDelete() {
+        return isDelete;
     }
 
-    public void setEmployeeroleList(List<Employeerole> employeeroleList) {
-        this.employeeroleList = employeeroleList;
+    public void setIsDelete(Character isDelete) {
+        this.isDelete = isDelete;
+    }
+
+    @XmlTransient
+    public List<EmployeeRole> getEmployeeRoleList() {
+        return employeeRoleList;
+    }
+
+    public void setEmployeeRoleList(List<EmployeeRole> employeeRoleList) {
+        this.employeeRoleList = employeeRoleList;
     }
 
     @Override

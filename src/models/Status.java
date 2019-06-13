@@ -6,7 +6,6 @@
 package models;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -18,8 +17,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -34,11 +31,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Status.findAll", query = "SELECT s FROM Status s")
     , @NamedQuery(name = "Status.findById", query = "SELECT s FROM Status s WHERE s.id = :id")
     , @NamedQuery(name = "Status.findByName", query = "SELECT s FROM Status s WHERE s.name = :name")
-    , @NamedQuery(name = "Status.findByDateStatus", query = "SELECT s FROM Status s WHERE s.dateStatus = :dateStatus")})
+    , @NamedQuery(name = "Status.findByIsDelete", query = "SELECT s FROM Status s WHERE s.isDelete = :isDelete")})
 public class Status implements Serializable {
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status", fetch = FetchType.LAZY)
-    private List<Repairstatus> repairstatusList;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -49,13 +43,12 @@ public class Status implements Serializable {
     @Column(name = "NAME")
     private String name;
     @Basic(optional = false)
-    @Column(name = "DATE_STATUS")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dateStatus;
+    @Column(name = "IS_DELETE")
+    private Character isDelete;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "status", fetch = FetchType.LAZY)
-    private List<Loaning> loaningList;
+    private List<LoaningStatus> loaningStatusList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "status", fetch = FetchType.LAZY)
-    private List<Repair> repairList;
+    private List<RepairStatus> repairStatusList;
 
     public Status() {
     }
@@ -64,10 +57,10 @@ public class Status implements Serializable {
         this.id = id;
     }
 
-    public Status(Long id, String name, Date dateStatus) {
+    public Status(Long id, String name, Character isDelete) {
         this.id = id;
         this.name = name;
-        this.dateStatus = dateStatus;
+        this.isDelete = isDelete;
     }
 
     public Long getId() {
@@ -86,30 +79,30 @@ public class Status implements Serializable {
         this.name = name;
     }
 
-    public Date getDateStatus() {
-        return dateStatus;
+    public Character getIsDelete() {
+        return isDelete;
     }
 
-    public void setDateStatus(Date dateStatus) {
-        this.dateStatus = dateStatus;
-    }
-
-    @XmlTransient
-    public List<Loaning> getLoaningList() {
-        return loaningList;
-    }
-
-    public void setLoaningList(List<Loaning> loaningList) {
-        this.loaningList = loaningList;
+    public void setIsDelete(Character isDelete) {
+        this.isDelete = isDelete;
     }
 
     @XmlTransient
-    public List<Repair> getRepairList() {
-        return repairList;
+    public List<LoaningStatus> getLoaningStatusList() {
+        return loaningStatusList;
     }
 
-    public void setRepairList(List<Repair> repairList) {
-        this.repairList = repairList;
+    public void setLoaningStatusList(List<LoaningStatus> loaningStatusList) {
+        this.loaningStatusList = loaningStatusList;
+    }
+
+    @XmlTransient
+    public List<RepairStatus> getRepairStatusList() {
+        return repairStatusList;
+    }
+
+    public void setRepairStatusList(List<RepairStatus> repairStatusList) {
+        this.repairStatusList = repairStatusList;
     }
 
     @Override
@@ -135,15 +128,6 @@ public class Status implements Serializable {
     @Override
     public String toString() {
         return "models.Status[ id=" + id + " ]";
-    }
-
-    @XmlTransient
-    public List<Repairstatus> getRepairstatusList() {
-        return repairstatusList;
-    }
-
-    public void setRepairstatusList(List<Repairstatus> repairstatusList) {
-        this.repairstatusList = repairstatusList;
     }
     
 }

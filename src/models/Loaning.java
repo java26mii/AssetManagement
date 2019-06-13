@@ -7,7 +7,9 @@ package models;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,24 +18,27 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author WINDOWS 10
  */
 @Entity
-@Table(name = "LOANING")
+@Table(name = "LOANINGS")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Loaning.findAll", query = "SELECT l FROM Loaning l")
     , @NamedQuery(name = "Loaning.findById", query = "SELECT l FROM Loaning l WHERE l.id = :id")
     , @NamedQuery(name = "Loaning.findByDateLoaning", query = "SELECT l FROM Loaning l WHERE l.dateLoaning = :dateLoaning")
     , @NamedQuery(name = "Loaning.findByDateReturn", query = "SELECT l FROM Loaning l WHERE l.dateReturn = :dateReturn")
-    , @NamedQuery(name = "Loaning.findByDetail", query = "SELECT l FROM Loaning l WHERE l.detail = :detail")})
+    , @NamedQuery(name = "Loaning.findByNote", query = "SELECT l FROM Loaning l WHERE l.note = :note")
+    , @NamedQuery(name = "Loaning.findByIsDelete", query = "SELECT l FROM Loaning l WHERE l.isDelete = :isDelete")})
 public class Loaning implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -50,20 +55,19 @@ public class Loaning implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateReturn;
     @Basic(optional = false)
-    @Column(name = "DETAIL")
-    private String detail;
+    @Column(name = "NOTE")
+    private String note;
+    @Basic(optional = false)
+    @Column(name = "IS_DELETE")
+    private Character isDelete;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "loaning", fetch = FetchType.LAZY)
+    private List<LoaningStatus> loaningStatusList;
     @JoinColumn(name = "ASSET", referencedColumnName = "ID")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Asset asset;
-    @JoinColumn(name = "MANAGER", referencedColumnName = "ID")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Employee manager;
     @JoinColumn(name = "EMPLOYEE", referencedColumnName = "ID")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Employee employee;
-    @JoinColumn(name = "STATUS", referencedColumnName = "ID")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Status status;
 
     public Loaning() {
     }
@@ -72,11 +76,12 @@ public class Loaning implements Serializable {
         this.id = id;
     }
 
-    public Loaning(Long id, Date dateLoaning, Date dateReturn, String detail) {
+    public Loaning(Long id, Date dateLoaning, Date dateReturn, String note, Character isDelete) {
         this.id = id;
         this.dateLoaning = dateLoaning;
         this.dateReturn = dateReturn;
-        this.detail = detail;
+        this.note = note;
+        this.isDelete = isDelete;
     }
 
     public Long getId() {
@@ -103,12 +108,29 @@ public class Loaning implements Serializable {
         this.dateReturn = dateReturn;
     }
 
-    public String getDetail() {
-        return detail;
+    public String getNote() {
+        return note;
     }
 
-    public void setDetail(String detail) {
-        this.detail = detail;
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public Character getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(Character isDelete) {
+        this.isDelete = isDelete;
+    }
+
+    @XmlTransient
+    public List<LoaningStatus> getLoaningStatusList() {
+        return loaningStatusList;
+    }
+
+    public void setLoaningStatusList(List<LoaningStatus> loaningStatusList) {
+        this.loaningStatusList = loaningStatusList;
     }
 
     public Asset getAsset() {
@@ -119,28 +141,12 @@ public class Loaning implements Serializable {
         this.asset = asset;
     }
 
-    public Employee getManager() {
-        return manager;
-    }
-
-    public void setManager(Employee manager) {
-        this.manager = manager;
-    }
-
     public Employee getEmployee() {
         return employee;
     }
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
     }
 
     @Override

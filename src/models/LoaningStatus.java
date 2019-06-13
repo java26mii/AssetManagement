@@ -6,6 +6,7 @@
 package models;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,6 +17,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -23,30 +26,40 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author WINDOWS 10
  */
 @Entity
-@Table(name = "EMPLOYEEROLES")
+@Table(name = "LOANING_STATUS")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Employeerole.findAll", query = "SELECT e FROM Employeerole e")
-    , @NamedQuery(name = "Employeerole.findById", query = "SELECT e FROM Employeerole e WHERE e.id = :id")})
-public class Employeerole implements Serializable {
+    @NamedQuery(name = "LoaningStatus.findAll", query = "SELECT l FROM LoaningStatus l")
+    , @NamedQuery(name = "LoaningStatus.findById", query = "SELECT l FROM LoaningStatus l WHERE l.id = :id")
+    , @NamedQuery(name = "LoaningStatus.findByDateLoaning", query = "SELECT l FROM LoaningStatus l WHERE l.dateLoaning = :dateLoaning")})
+public class LoaningStatus implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @JoinColumn(name = "EMPLOYEE", referencedColumnName = "ID")
+    @Basic(optional = false)
+    @Column(name = "DATE_LOANING")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateLoaning;
+    @JoinColumn(name = "LOANING", referencedColumnName = "ID")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Employee employee;
-    @JoinColumn(name = "ROLE", referencedColumnName = "ID")
+    private Loaning loaning;
+    @JoinColumn(name = "STATUS", referencedColumnName = "ID")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Role role;
+    private Status status;
 
-    public Employeerole() {
+    public LoaningStatus() {
     }
 
-    public Employeerole(Long id) {
+    public LoaningStatus(Long id) {
         this.id = id;
+    }
+
+    public LoaningStatus(Long id, Date dateLoaning) {
+        this.id = id;
+        this.dateLoaning = dateLoaning;
     }
 
     public Long getId() {
@@ -57,20 +70,28 @@ public class Employeerole implements Serializable {
         this.id = id;
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public Date getDateLoaning() {
+        return dateLoaning;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setDateLoaning(Date dateLoaning) {
+        this.dateLoaning = dateLoaning;
     }
 
-    public Role getRole() {
-        return role;
+    public Loaning getLoaning() {
+        return loaning;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setLoaning(Loaning loaning) {
+        this.loaning = loaning;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     @Override
@@ -83,10 +104,10 @@ public class Employeerole implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Employeerole)) {
+        if (!(object instanceof LoaningStatus)) {
             return false;
         }
-        Employeerole other = (Employeerole) object;
+        LoaningStatus other = (LoaningStatus) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -95,7 +116,7 @@ public class Employeerole implements Serializable {
 
     @Override
     public String toString() {
-        return "models.Employeerole[ id=" + id + " ]";
+        return "models.LoaningStatus[ id=" + id + " ]";
     }
     
 }

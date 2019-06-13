@@ -6,7 +6,6 @@
 package models;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -20,8 +19,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -30,18 +27,15 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author WINDOWS 10
  */
 @Entity
-@Table(name = "REPAIR")
+@Table(name = "REPAIRS")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Repair.findAll", query = "SELECT r FROM Repair r")
     , @NamedQuery(name = "Repair.findById", query = "SELECT r FROM Repair r WHERE r.id = :id")
-    , @NamedQuery(name = "Repair.findByDateRepair", query = "SELECT r FROM Repair r WHERE r.dateRepair = :dateRepair")
     , @NamedQuery(name = "Repair.findByCost", query = "SELECT r FROM Repair r WHERE r.cost = :cost")
-    , @NamedQuery(name = "Repair.findByDetail", query = "SELECT r FROM Repair r WHERE r.detail = :detail")})
+    , @NamedQuery(name = "Repair.findByNote", query = "SELECT r FROM Repair r WHERE r.note = :note")
+    , @NamedQuery(name = "Repair.findByIsDelete", query = "SELECT r FROM Repair r WHERE r.isDelete = :isDelete")})
 public class Repair implements Serializable {
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "repair", fetch = FetchType.LAZY)
-    private List<Repairstatus> repairstatusList;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -49,27 +43,22 @@ public class Repair implements Serializable {
     @Column(name = "ID")
     private Long id;
     @Basic(optional = false)
-    @Column(name = "DATE_REPAIR")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dateRepair;
-    @Basic(optional = false)
     @Column(name = "COST")
     private long cost;
     @Basic(optional = false)
-    @Column(name = "DETAIL")
-    private String detail;
+    @Column(name = "NOTE")
+    private String note;
+    @Basic(optional = false)
+    @Column(name = "IS_DELETE")
+    private Character isDelete;
     @JoinColumn(name = "ASSET", referencedColumnName = "ID")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Asset asset;
-    @JoinColumn(name = "MANAGER", referencedColumnName = "ID")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Employee manager;
     @JoinColumn(name = "EMPLOYEE", referencedColumnName = "ID")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Employee employee;
-    @JoinColumn(name = "STATUS", referencedColumnName = "ID")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Status status;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "repair", fetch = FetchType.LAZY)
+    private List<RepairStatus> repairStatusList;
 
     public Repair() {
     }
@@ -78,11 +67,11 @@ public class Repair implements Serializable {
         this.id = id;
     }
 
-    public Repair(Long id, Date dateRepair, long cost, String detail) {
+    public Repair(Long id, long cost, String note, Character isDelete) {
         this.id = id;
-        this.dateRepair = dateRepair;
         this.cost = cost;
-        this.detail = detail;
+        this.note = note;
+        this.isDelete = isDelete;
     }
 
     public Long getId() {
@@ -93,14 +82,6 @@ public class Repair implements Serializable {
         this.id = id;
     }
 
-    public Date getDateRepair() {
-        return dateRepair;
-    }
-
-    public void setDateRepair(Date dateRepair) {
-        this.dateRepair = dateRepair;
-    }
-
     public long getCost() {
         return cost;
     }
@@ -109,12 +90,20 @@ public class Repair implements Serializable {
         this.cost = cost;
     }
 
-    public String getDetail() {
-        return detail;
+    public String getNote() {
+        return note;
     }
 
-    public void setDetail(String detail) {
-        this.detail = detail;
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public Character getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(Character isDelete) {
+        this.isDelete = isDelete;
     }
 
     public Asset getAsset() {
@@ -125,14 +114,6 @@ public class Repair implements Serializable {
         this.asset = asset;
     }
 
-    public Employee getManager() {
-        return manager;
-    }
-
-    public void setManager(Employee manager) {
-        this.manager = manager;
-    }
-
     public Employee getEmployee() {
         return employee;
     }
@@ -141,12 +122,13 @@ public class Repair implements Serializable {
         this.employee = employee;
     }
 
-    public Status getStatus() {
-        return status;
+    @XmlTransient
+    public List<RepairStatus> getRepairStatusList() {
+        return repairStatusList;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
+    public void setRepairStatusList(List<RepairStatus> repairStatusList) {
+        this.repairStatusList = repairStatusList;
     }
 
     @Override
@@ -172,15 +154,6 @@ public class Repair implements Serializable {
     @Override
     public String toString() {
         return "models.Repair[ id=" + id + " ]";
-    }
-
-    @XmlTransient
-    public List<Repairstatus> getRepairstatusList() {
-        return repairstatusList;
-    }
-
-    public void setRepairstatusList(List<Repairstatus> repairstatusList) {
-        this.repairstatusList = repairstatusList;
     }
     
 }
