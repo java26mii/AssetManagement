@@ -37,6 +37,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Status.findByDateStatus", query = "SELECT s FROM Status s WHERE s.dateStatus = :dateStatus")})
 public class Status implements Serializable {
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status", fetch = FetchType.LAZY)
+    private List<Repairstatus> repairstatusList;
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -132,6 +135,15 @@ public class Status implements Serializable {
     @Override
     public String toString() {
         return "models.Status[ id=" + id + " ]";
+    }
+
+    @XmlTransient
+    public List<Repairstatus> getRepairstatusList() {
+        return repairstatusList;
+    }
+
+    public void setRepairstatusList(List<Repairstatus> repairstatusList) {
+        this.repairstatusList = repairstatusList;
     }
     
 }

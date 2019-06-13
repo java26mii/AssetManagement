@@ -49,7 +49,7 @@ Contributor(s):
     <property name="hibernate.connection.username">ASSET</property>
     <property name="hibernate.connection.password">aset</property>
     <property name="hibernate.default_schema">ASSET</property>
-    <property name="hibernate.show_sql">false</property>
+    <property name="hibernate.show_sql">true</property>
     <property name="hibernate.enable_lazy_load_no_trans">true</property>
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.connection.autocommit">true</property>
@@ -63,5 +63,6 @@ Contributor(s):
     <mapping class="models.Repair"/>
     <mapping class="models.Role"/>
     <mapping class="models.Status"/>
+    <mapping class="models.Repairstatus"/>
     </session-factory>
 </hibernate-configuration>

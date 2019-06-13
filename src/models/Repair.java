@@ -7,7 +7,9 @@ package models;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,10 +18,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -35,6 +39,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Repair.findByCost", query = "SELECT r FROM Repair r WHERE r.cost = :cost")
     , @NamedQuery(name = "Repair.findByDetail", query = "SELECT r FROM Repair r WHERE r.detail = :detail")})
 public class Repair implements Serializable {
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "repair", fetch = FetchType.LAZY)
+    private List<Repairstatus> repairstatusList;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -165,6 +172,15 @@ public class Repair implements Serializable {
     @Override
     public String toString() {
         return "models.Repair[ id=" + id + " ]";
+    }
+
+    @XmlTransient
+    public List<Repairstatus> getRepairstatusList() {
+        return repairstatusList;
+    }
+
+    public void setRepairstatusList(List<Repairstatus> repairstatusList) {
+        this.repairstatusList = repairstatusList;
     }
     
 }
