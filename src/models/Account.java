@@ -65,6 +65,10 @@ public class Account implements Serializable {
         this.isDelete = isDelete;
     }
 
+    public Account(int parseInt, String username, String pass) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public Long getId() {
         return id;
     }

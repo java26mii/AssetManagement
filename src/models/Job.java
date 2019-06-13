@@ -55,6 +55,12 @@ public class Job implements Serializable {
         this.id = id;
     }
 
+    public Job(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+    
+
     public Job(Long id, String name, Character isDelete) {
         this.id = id;
         this.name = name;
