@@ -9,12 +9,12 @@ package view;
  *
  * @author erik
  */
-public class peminjamanEmployee extends javax.swing.JInternalFrame {
+public class peminjamanDepartment extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form peminjamanEmployee
      */
-    public peminjamanEmployee() {
+    public peminjamanDepartment() {
         initComponents();
     }
 
@@ -57,7 +57,7 @@ public class peminjamanEmployee extends javax.swing.JInternalFrame {
         setResizable(true);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setText("Pengajuan Peminjaman Barang ");
+        jLabel1.setText("Approval Peminjaman Barang");
 
         table_Country.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -111,14 +111,14 @@ public class peminjamanEmployee extends javax.swing.JInternalFrame {
 
         jButton4.setText("Clear");
 
-        btn_insert.setText("Ajukan");
+        btn_insert.setText("Setujui");
         btn_insert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_insertActionPerformed(evt);
             }
         });
 
-        btn_delete.setText("Batalkan");
+        btn_delete.setText("Tolak");
         btn_delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_deleteActionPerformed(evt);
@@ -161,9 +161,9 @@ public class peminjamanEmployee extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 232, Short.MAX_VALUE)
+                .addGap(0, 245, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(0, 232, Short.MAX_VALUE))
+                .addGap(0, 246, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)

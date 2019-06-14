@@ -9,12 +9,12 @@ package view;
  *
  * @author erik
  */
-public class framemanagerdivisi extends javax.swing.JFrame {
+public class framemployee extends javax.swing.JFrame {
 
     /**
-     * Creates new form managerdepartment
+     * Creates new form framemployee
      */
-    public framemanagerdivisi() {
+    public framemployee() {
         initComponents();
     }
 
@@ -27,12 +27,22 @@ public class framemanagerdivisi extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jpanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jpanel = new javax.swing.JPanel();
         btn_peminjaman = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jButton1.setIcon(new javax.swing.ImageIcon("E:\\metrodata\\tugas projek inventory barang\\view\\home.png")); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel1.setText("DASHBOARD EMPLOYEE");
 
         javax.swing.GroupLayout jpanelLayout = new javax.swing.GroupLayout(jpanel);
         jpanel.setLayout(jpanelLayout);
@@ -45,17 +55,7 @@ public class framemanagerdivisi extends javax.swing.JFrame {
             .addGap(0, 796, Short.MAX_VALUE)
         );
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel1.setText("DASHBOARD MANAGER DIVISI");
-
-        jButton1.setIcon(new javax.swing.ImageIcon("E:\\metrodata\\tugas projek inventory barang\\view\\home.png")); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        btn_peminjaman.setIcon(new javax.swing.ImageIcon("E:\\metrodata\\tugas projek inventory barang\\view\\approval.png")); // NOI18N
+        btn_peminjaman.setIcon(new javax.swing.ImageIcon("E:\\metrodata\\tugas projek inventory barang\\view\\loaning.png")); // NOI18N
         btn_peminjaman.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_peminjamanActionPerformed(evt);
@@ -76,9 +76,9 @@ public class framemanagerdivisi extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(btn_peminjaman)
-                        .addGap(22, 22, 22)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,16 +99,16 @@ public class framemanagerdivisi extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_peminjamanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_peminjamanActionPerformed
-        // TODO add your handling code here:
-        kerusakanDivisi kerusakan = new kerusakanDivisi();
-        this.jpanel.add(kerusakan);
-        kerusakan.show();
-    }//GEN-LAST:event_btn_peminjamanActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btn_peminjamanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_peminjamanActionPerformed
+        // TODO add your handling code here:
+        peminjamanEmployee peminjaman = new peminjamanEmployee();
+        this.jpanel.add(peminjaman);
+        peminjaman.show();
+    }//GEN-LAST:event_btn_peminjamanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -127,23 +127,20 @@ public class framemanagerdivisi extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(framemanagerdivisi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(framemployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(framemanagerdivisi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(framemployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(framemanagerdivisi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(framemployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(framemanagerdivisi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(framemployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new framemanagerdivisi().setVisible(true);
+                new framemployee().setVisible(true);
             }
         });
     }
