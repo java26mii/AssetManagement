@@ -19,14 +19,14 @@ import tools.HibernateUtil;
  *
  * @author erik
  */
-public class AccountController {
+public class AccountregisterloginController {
     private IGeneralDAO<Account> igdao;
     private Session session;
     
     private Transaction transaction;
     SessionFactory factory = HibernateUtil.getSessionFactory();
 
-    public AccountController(SessionFactory factory) {
+    public AccountregisterloginController(SessionFactory factory) {
         igdao = new GeneralDAO(factory, Account.class);
     }
 

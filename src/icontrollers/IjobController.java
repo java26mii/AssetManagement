@@ -12,7 +12,7 @@ import models.Job;
  *
  * @author erik
  */
-public interface IjobECotroller {
+public interface IjobController {
     public List<Job> getAll();
 
     public Job getById(String id);

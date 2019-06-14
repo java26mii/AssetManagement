@@ -4,16 +4,15 @@
  * and open the template in the editor.
  */
 package icontrollers;
-import java.util.List;
 import models.Account;
+
 /**
  *
  * @author erik
  */
-public interface accountIController {
-    public boolean Validasi(Object keyword,boolean isId);
+public interface Account {
+    public String save(String Id, String username, String password);
+   
     
-    public String register (String id, String username, String password);
-    
-    public String login(String username, String password);
+    public String delete(String id);
 }

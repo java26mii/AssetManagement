@@ -5,8 +5,12 @@
  */
 package tools;
 
+import controllers.EmployeeController;
+import models.Employee;
 import org.hibernate.SessionFactory;
 import tools.HibernateUtil;
+import icontrollers.IEmployee;
+
 
 /**
  *
@@ -21,6 +25,13 @@ public class AssetManagement {
         // TODO code application logic here
               SessionFactory factory = HibernateUtil.getSessionFactory();
         System.out.println(factory);
+        IEmployee eco = new EmployeeController(factory);
+        
+        for (Employee employee : eco.getAll()) {
+            System.out.println(employee.getEmail());
+        }
     }
-    
-}
+}      
+
+//        
+

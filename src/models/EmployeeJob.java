@@ -45,9 +45,11 @@ public class EmployeeJob implements Serializable {
     public EmployeeJob() {
     }
 
+
     public EmployeeJob(Long id) {
         this.id = id;
     }
+
 
     public Long getId() {
         return id;
@@ -57,6 +59,12 @@ public class EmployeeJob implements Serializable {
         this.id = id;
     }
 
+    public EmployeeJob(Long id, Employee employee, Job job) {
+        this.id = id;
+        this.employee = employee;
+        this.job = job;
+    }
+    
     public Employee getEmployee() {
         return employee;
     }

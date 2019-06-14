@@ -19,9 +19,7 @@ public interface IEmployeeJob {
 
     public List<EmployeeJob> search(Object keyword);
 
-    public String save(String Id, String first_name, String last_name,
-            String email, String phone_number, String manager,
-            String is_delete);
+    public String save(String id, String employee, String job);
    
     
     public String delete(String id);

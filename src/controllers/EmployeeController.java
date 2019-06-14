@@ -6,7 +6,6 @@
 package controllers;
 
 import daos.GeneralDAO;
-import icontrollers.IEmployeeController;
 import idaos.IGeneralDAO;
 import java.math.BigDecimal;
 import java.text.ParseException;
@@ -18,12 +17,13 @@ import java.util.logging.Logger;
 import models.Employee;
 import models.Job;
 import org.hibernate.SessionFactory;
+import icontrollers.IEmployee;
 
 /**
  *
  * @author WINDOWS 10
  */
-public class EmployeeController implements IEmployeeController{
+public class EmployeeController implements IEmployee{
     
     
     Date date = new Date(); // this object contains the current date value 

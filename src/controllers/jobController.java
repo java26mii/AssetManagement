@@ -6,53 +6,55 @@
 package controllers;
 
 import daos.GeneralDAO;
+import icontrollers.IjobController;
 import java.util.List;
 import models.Job;
 import org.hibernate.SessionFactory;
-import icontrollers.IjobECotroller;
 
 /**
  *
  * @author erik
  */
-public class jobEController implements IjobECotroller{
-    private GeneralDAO<Job> gdao;
+public class jobController implements IjobController{
+    private GeneralDAO<Job> jdao;
     
-    public jobEController(SessionFactory factory) {
-        gdao = new GeneralDAO(factory, Job.class);
+    public jobController(SessionFactory factory) {
+        jdao = new GeneralDAO(factory, jobController.class);
     }
-            
-    
+
     @Override
     public List<Job> getAll() {
-        return gdao.getData("");
+        return jdao.getData("");
     }
 
     @Override
     public Job getById(String id) {
-        return gdao.getById(id);
+        return jdao.getById(new Long(id));
     }
 
     @Override
     public List<Job> search(Object keyword) {
-        return gdao.getData(keyword);
+        return jdao.getData(keyword);
     }
 
     @Override
     public String save(String id, String name) {
-    String result = "";
+        String result = "";
         Job job = new Job(new Long(id), name);
-        if (gdao.saveOrDelete(job, false)) {
+        if (jdao.saveOrDelete(job, false)) {
             result = "Success";
         } else {
             result = "Failed";
         }
-        return result;    
+        return result;
     }
 
     @Override
     public String delete(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String result = "Failed";
+        if (jdao.saveOrDelete(new Job(new Long(id)), true)) {
+            result = "Success";
+        }
+        return result;
     }
-    
 }
