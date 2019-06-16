@@ -59,10 +59,10 @@ public class EmployeeController implements IEmployee{
     }
 
     @Override
-    public String save(String Id, String firstName, String lastName, String email, String phoneNumber, String manager) {
+    public String save(String id, String firstName, String lastName, String email, String phoneNumber, String manager) {
         String result = "Data gagal disimpan";
-        if (gdao.saveOrDelete(new Employee(new Long(Id), firstName, lastName, email, new Long(phoneNumber),
-                new Employee(Long.parseLong(manager))), false)) {
+        if (gdao.saveOrDelete(new Employee(new Long(id), firstName, lastName, email, new Long(phoneNumber),
+                new Employee(Long.parseLong(manager)),new Character('0')), false)) {
             result = "Data berhasil di simpan";
         }
         return result;

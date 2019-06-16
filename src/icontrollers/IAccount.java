@@ -4,15 +4,19 @@
  * and open the template in the editor.
  */
 package icontrollers;
+import java.util.List;
 import models.Account;
 
 /**
  *
  * @author erik
  */
-public interface Account {
-    public String save(String Id, String username, String password);
-   
-    
+public interface IAccount {
+    public List<Account> getAll();
+
+    public Account getById(String id);
+
+    public String save(String id, String username, String password);
+       
     public String delete(String id);
 }

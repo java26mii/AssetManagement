@@ -58,6 +58,13 @@ public class Account implements Serializable {
         this.id = id;
     }
 
+    public Account(Long id, String username, String password) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+    }
+
+    
     public Account(Long id, String username, String password, Character isDelete) {
         this.id = id;
         this.username = username;
@@ -65,9 +72,6 @@ public class Account implements Serializable {
         this.isDelete = isDelete;
     }
 
-    public Account(int parseInt, String username, String pass) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     public Long getId() {
         return id;
