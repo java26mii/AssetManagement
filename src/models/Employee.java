@@ -83,6 +83,15 @@ public class Employee implements Serializable {
         this.id = id;
     }
 
+      public Employee(Long id, String firstName, String lastName, String email, long phoneNumber, Employee manager) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.manager = manager;
+    }
+      
     public Employee(Long id, String firstName, String lastName, String email, long phoneNumber, Employee manager ,Character isDelete) {
         this.id = id;
         this.firstName = firstName;
@@ -93,14 +102,7 @@ public class Employee implements Serializable {
         this.isDelete = isDelete;
     }
     
-        public Employee(Long id, String firstName, String lastName, String email, long phoneNumber, Employee manager) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.manager = manager;
-    }
+      
 
     public Long getId() {
         return id;

@@ -70,10 +70,13 @@
                                           <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="jphone_number" pref="293" max="32767" attributes="0"/>
-                                          <Component id="jmanager" alignment="1" max="32767" attributes="0"/>
-                                          <Component id="jemail" alignment="1" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                              <Component id="jphone_number" min="-2" pref="293" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="jemail" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jmanager" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
@@ -133,11 +136,13 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                      <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jemail" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jlast_name" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jemail" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -153,7 +158,7 @@
                   <Component id="jsearch" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" pref="97" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" pref="105" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -223,6 +228,9 @@
     <Component class="javax.swing.JTextField" name="jlast_name">
     </Component>
     <Component class="javax.swing.JTextField" name="jphone_number">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jphone_numberActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jmanager">
     </Component>

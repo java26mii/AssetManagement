@@ -13,7 +13,7 @@ import models.Employee;
  * @author WINDOWS 10
  */
 public interface IEmployee {
-        public List<Employee> getAll();
+    public List<Employee> getAll();
 
     public Employee getById(String id);
 

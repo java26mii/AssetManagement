@@ -11,6 +11,7 @@ import java.util.List;
 import models.Account;
 import org.hibernate.SessionFactory;
 
+
 /**
  *
  * @author erik
@@ -30,13 +31,18 @@ public class AccountController implements IAccount{
 
     @Override
     public Account getById(String id) {
-        return dAO.getById(id);
+        return dAO.getById(new Long(id));
     }
 
     @Override
+    public List<Account> search(Object keyword) {
+        return dAO.getData(keyword);
+    }
+    
+    @Override
     public String save(String id, String username, String password) {
         String result = "Data gagal disimpan";
-        if (dAO.saveOrDelete(new Account(new Long(id),username, password,new Character('0')), false)) {
+        if (dAO.saveOrDelete(new Account(new Long(id),username, password,new Character('1')), false)) {
             result = "Data berhasil di simpan";
         }
         return result;
@@ -50,9 +56,8 @@ public class AccountController implements IAccount{
         }
         return result="success";
     }    
+    
+   
 
-    @Override
-    public List<Account> search(Object keyword) {
-        return dAO.getData(keyword);
-    }
+    
 }

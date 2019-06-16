@@ -24,11 +24,7 @@ import icontrollers.IEmployee;
  * @author WINDOWS 10
  */
 public class EmployeeController implements IEmployee{
-    
-    
-    Date date = new Date(); // this object contains the current date value 
-    SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
-    private IGeneralDAO<Employee> gdao;
+    private GeneralDAO<Employee> gdao;
 
     public EmployeeController(SessionFactory factory) {
         gdao = new GeneralDAO<>(factory, Employee.class);
@@ -41,7 +37,7 @@ public class EmployeeController implements IEmployee{
 
     @Override
     public Employee getById(String id) {
-        return gdao.getById(new Integer(id));
+        return gdao.getById(id);
     }
 
 //    @Override
@@ -52,7 +48,7 @@ public class EmployeeController implements IEmployee{
     @Override
     public String delete(String id) {
         if (gdao.saveOrDelete(new Employee(new Long(id)), true)) {
-            return "Data berhasil dihapus";
+            return "failed";
         } else {
             return "Data gagal dihapus";
         }
@@ -61,7 +57,7 @@ public class EmployeeController implements IEmployee{
     @Override
     public String save(String id, String firstName, String lastName, String email, String phoneNumber, String manager) {
         String result = "Data gagal disimpan";
-        if (gdao.saveOrDelete(new Employee(new Long(id), firstName, lastName, email, new Long(phoneNumber), new Employee(new Long(manager)), new Character('0')), false)) {
+        if (gdao.saveOrDelete(new Employee(new Long(id), firstName, lastName, email, new Long(phoneNumber), new Employee(new Long(manager)), new Character('1')), false)) {
             result = "Data berhasil di simpan";
         }
         return result;

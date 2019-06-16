@@ -83,6 +83,15 @@ public class Loaning implements Serializable {
         this.note = note;
         this.isDelete = isDelete;
     }
+    
+        public Loaning(Long id, Date dateLoaning, Date dateReturn, String note, Asset asset, Employee employee) {
+        this.id = id;
+        this.dateLoaning = dateLoaning;
+        this.dateReturn = dateReturn;
+        this.note = note;
+        this.asset = asset;
+        this.employee = employee;
+        }
 
     public Long getId() {
         return id;

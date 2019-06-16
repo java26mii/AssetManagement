@@ -31,6 +31,7 @@ public class framemployee extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jpanel = new javax.swing.JPanel();
         btn_peminjaman = new javax.swing.JButton();
+        btn_send_email = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,6 +63,13 @@ public class framemployee extends javax.swing.JFrame {
             }
         });
 
+        btn_send_email.setText("send email");
+        btn_send_email.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_send_emailActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -74,8 +82,13 @@ public class framemployee extends javax.swing.JFrame {
                         .addGap(139, 139, 139)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(btn_peminjaman)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addComponent(btn_peminjaman))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(32, 32, 32)
+                                .addComponent(btn_send_email)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -88,7 +101,9 @@ public class framemployee extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btn_peminjaman))
+                        .addComponent(btn_peminjaman)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_send_email))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(41, 41, 41)
@@ -109,6 +124,13 @@ public class framemployee extends javax.swing.JFrame {
         this.jpanel.add(peminjaman);
         peminjaman.show();
     }//GEN-LAST:event_btn_peminjamanActionPerformed
+
+    private void btn_send_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_send_emailActionPerformed
+        // TODO add your handling code here:
+        emailTagihan email = new emailTagihan();
+        this.jpanel.add(email);
+        email.show();
+    }//GEN-LAST:event_btn_send_emailActionPerformed
 
     /**
      * @param args the command line arguments
@@ -147,6 +169,7 @@ public class framemployee extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_peminjaman;
+    private javax.swing.JButton btn_send_email;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jpanel;

@@ -48,7 +48,7 @@ public class Account implements Serializable {
     @Column(name = "IS_DELETE")
     private Character isDelete;
     @JoinColumn(name = "ID", referencedColumnName = "ID", insertable = false, updatable = false)
-    @OneToOne()
+    @OneToOne(optional = false, fetch = FetchType.LAZY)
     private Employee employee;
 
     public Account() {

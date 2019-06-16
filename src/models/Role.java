@@ -61,6 +61,11 @@ public class Role implements Serializable {
         this.isDelete = isDelete;
     }
 
+    public Role(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }
@@ -118,5 +123,5 @@ public class Role implements Serializable {
     public String toString() {
         return "models.Role[ id=" + id + " ]";
     }
-    
+
 }

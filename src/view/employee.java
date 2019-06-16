@@ -6,7 +6,6 @@
 package view;
 
 import controllers.EmployeeController;
-import daos.GeneralDAO;
 import icontrollers.IEmployee;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,13 +51,14 @@ public class employee extends javax.swing.JInternalFrame {
         employees = iej.getAll();
         for (int i = 0; i < employees.size(); i++) {
             row[0] = i +1;
-            row[1]=employees.get(i).getId();
             row[1] = employees.get(i).getId();
             row[2] = employees.get(i).getFirstName();
             row[3] = employees.get(i).getLastName();
             row[4] = employees.get(i).getPhoneNumber();
             row[5] = employees.get(i).getManager().getFirstName()+" "+employees.get(i).getManager().getLastName();
             row[6] = employees.get(i).getEmail(); 
+            
+            
 //                    + " - " + country.get(i).getRegion().getId()
 //                    + country.get(i).getRegion().getName();
 //                    .getRegionId()
@@ -85,6 +85,8 @@ public class employee extends javax.swing.JInternalFrame {
             row[4] = employees.get(i).getPhoneNumber();
             row[5] = employees.get(i).getManager().getFirstName()+" "+employees.get(i).getManager().getLastName();
             row[6] = employees.get(i).getEmail();
+            
+            
             model.addRow(row);
         }
     }
@@ -164,6 +166,12 @@ public class employee extends javax.swing.JInternalFrame {
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel7.setText("Manager");
+
+        jphone_number.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jphone_numberActionPerformed(evt);
+            }
+        });
 
         jTableresult.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -265,10 +273,12 @@ public class employee extends javax.swing.JInternalFrame {
                                             .addComponent(jLabel6)
                                             .addComponent(jLabel5))
                                         .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(jphone_number, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
-                                            .addComponent(jmanager)
-                                            .addComponent(jemail)))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(0, 0, Short.MAX_VALUE)
+                                                .addComponent(jphone_number, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jemail)
+                                            .addComponent(jmanager)))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(36, 36, 36)
                                         .addComponent(btn_delete)
@@ -310,11 +320,12 @@ public class employee extends javax.swing.JInternalFrame {
                     .addComponent(jmanager, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel5)
+                        .addComponent(jemail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel4)
-                        .addComponent(jlast_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jemail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jlast_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_insert)
@@ -326,7 +337,7 @@ public class employee extends javax.swing.JInternalFrame {
                     .addComponent(jLabel8)
                     .addComponent(jsearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -342,7 +353,7 @@ public class employee extends javax.swing.JInternalFrame {
         } else {
             int confirm = JOptionPane.showConfirmDialog(this, "Ingin mengupdate data ?", "Konfirmasi", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (confirm == JOptionPane.YES_OPTION) {
-                JOptionPane.showMessageDialog(null, iej.save(jid.getText(), jfirst_name.getText(), jlast_name.getText(), jphone_number.getText(), jmanager.getText(), jemail.getText()));
+                JOptionPane.showMessageDialog(null, iej.save(jid.getText(), jfirst_name.getText(), jlast_name.getText(), jemail.getText(), jphone_number.getText(),jmanager.getText()));
                 updateTableAccount("");
                 resetTextEmployee();
             }
@@ -358,7 +369,7 @@ public class employee extends javax.swing.JInternalFrame {
         } else {
             int confirm = JOptionPane.showConfirmDialog(this, "Ingin mengupdate data ?", "Konfirmasi", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (confirm == JOptionPane.YES_OPTION) {
-                JOptionPane.showMessageDialog(null, iej.save(jid.getText(), jfirst_name.getText(), jlast_name.getText(), jphone_number.getText(), jmanager.getText(), jemail.getText()));
+                JOptionPane.showMessageDialog(null, iej.save(jid.getText(), jfirst_name.getText(), jlast_name.getText(),  jemail.getText(), jphone_number.getText(),jmanager.getText()));
                 updateTableAccount();
                 resetTextEmployee();
             }
@@ -404,6 +415,10 @@ public class employee extends javax.swing.JInternalFrame {
         showTableEmployee(jsearch.getText());
         System.out.println(jsearch.getText());
     }//GEN-LAST:event_jsearchKeyReleased
+
+    private void jphone_numberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jphone_numberActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jphone_numberActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

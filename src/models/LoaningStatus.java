@@ -61,6 +61,12 @@ public class LoaningStatus implements Serializable {
         this.id = id;
         this.dateLoaning = dateLoaning;
     }
+    public LoaningStatus(Long id, Date dateLoaning, Loaning loaning, Status status) {
+        this.id = id;
+        this.dateLoaning = dateLoaning;
+        this.loaning = loaning;
+        this.status = status;
+    }
 
     public Long getId() {
         return id;
