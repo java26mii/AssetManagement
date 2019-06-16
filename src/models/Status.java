@@ -63,6 +63,11 @@ public class Status implements Serializable {
         this.isDelete = isDelete;
     }
 
+    public Status(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+    
     public Long getId() {
         return id;
     }

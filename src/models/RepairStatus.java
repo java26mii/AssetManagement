@@ -62,6 +62,13 @@ public class RepairStatus implements Serializable {
         this.dateRepair = dateRepair;
     }
 
+    public RepairStatus(Long id, Status status, Repair repair, Date dateRepair) {
+        this.id = id;
+        this.repair = repair;
+        this.status = status;
+        this.dateRepair = dateRepair;
+    }
+
     public Long getId() {
         return id;
     }
@@ -118,5 +125,5 @@ public class RepairStatus implements Serializable {
     public String toString() {
         return "models.RepairStatus[ id=" + id + " ]";
     }
-    
+
 }

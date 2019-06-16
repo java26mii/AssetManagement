@@ -6,20 +6,22 @@
 package icontrollers;
 
 import java.util.List;
-import models.EmployeeRole;
+import models.Asset;
+import models.Role;
+import models.Status;
 
 /**
  *
- * @author erik
+ * @author WINDOWS 10
  */
-public interface IEmployeeRole {
-    public List<EmployeeRole> getAll();
+public interface IStatusController {
+        public List<Status> getAll();
 
-    public EmployeeRole getById(String id);
+    public Status getById(String id);
 
-    public List<EmployeeRole> search(Object keyword);
+    public List<Status> search(Object keyword);
 
-    public String save(String id, String employee, String job);
+    public String save(String id, String name);
    
     
     public String delete(String id);

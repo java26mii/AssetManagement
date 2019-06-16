@@ -17,10 +17,10 @@ import org.hibernate.SessionFactory;
  *
  * @author erik
  */
-public class employeeRoleController implements IEmployeeRole{
+public class EmployeeRoleController implements IEmployeeRole{
     private GeneralDAO<EmployeeRole> dAO;
     
-    public employeeRoleController(SessionFactory factory) {
+    public EmployeeRoleController(SessionFactory factory) {
         dAO = new GeneralDAO(factory, EmployeeRole.class);
     }
 

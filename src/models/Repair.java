@@ -73,6 +73,15 @@ public class Repair implements Serializable {
         this.note = note;
         this.isDelete = isDelete;
     }
+    
+        public Repair(Long id, Long cost, String note, Asset asset, Employee employee, Character isDelete) {
+        this.id = id;
+        this.cost = cost;
+        this.note = note;
+        this.asset = asset;
+        this.employee = employee;
+        this.isDelete = isDelete;
+        }
 
     public Long getId() {
         return id;

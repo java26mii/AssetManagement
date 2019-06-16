@@ -27,9 +27,9 @@ public class AssetManagement {
         System.out.println(factory);
         IEmployee eco = new EmployeeController(factory);
         
-        for (Employee employee : eco.getAll()) {
-            System.out.println(employee.getEmail());
-        }
+//        for (Employee employee : eco.getAll()) {
+//            System.out.println(employee.getEmail());
+//        }
     }
 }      
 
