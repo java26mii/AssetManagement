@@ -46,6 +46,11 @@ Contributor(s):
     <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:XE</property>
     <property name="hibernate.connection.username">Asset</property>
     <property name="hibernate.connection.password">erik</property>
+    <property name="hibernate.default_schema">Asset</property>
+    <property name="hibernate.show_sql">false</property>
+    <property name="hibernate.enable_lazy_load_no_trans">true</property>
+    <property name="hibernate.current_session_context_class">thread</property>
+    <property name="hibernate.connection.autocommit">true</property>
     <mapping class="models.Account"/>
     <mapping class="models.Asset"/>
     <mapping class="models.Employee"/>

@@ -50,4 +50,9 @@ public class AccountController implements IAccount{
         }
         return result="success";
     }    
+
+    @Override
+    public List<Account> search(Object keyword) {
+        return dAO.getData(keyword);
+    }
 }

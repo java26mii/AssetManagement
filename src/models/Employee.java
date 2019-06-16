@@ -146,7 +146,7 @@ public class Employee implements Serializable {
         return isDelete;
     }
 
-    public void setIsDelete(Character isDelete) {
+    public void setManager(Character isDelete) {
         this.isDelete = isDelete;
     }
 
