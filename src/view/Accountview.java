@@ -13,6 +13,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import models.Account;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import tools.HibernateUtil;
 
@@ -21,17 +22,18 @@ import tools.HibernateUtil;
  * @author erik
  */
 public class Accountview extends javax.swing.JInternalFrame {
-    SessionFactory factory = HibernateUtil.getSessionFactory();
-    IAccount iac = new AccountController(factory);
+    private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+    private Session session = null;
+    IAccount iac = new AccountController(sessionFactory);
     /**
      * Creates new form Account
      */
     public Accountview() {
         initComponents();
-        showTableAccount("");
+        showTableAccount();
     }
     
-    public void resetTextEmployee() {
+    public void resetTextAccount() {
         jid.setText("");
         jusername.setText("");
         jpassword.setText("");
@@ -40,8 +42,28 @@ public class Accountview extends javax.swing.JInternalFrame {
         btn_insert.setEnabled(true);
     }
     
+    public void showTableAccount(){
+        DefaultTableModel model = (DefaultTableModel)tableresult.getModel();        
+        Object[] row = new Object[4];
+        List<Account> accounts = new ArrayList<>();
+        accounts = iac.getAll();
+        for (int i = 0; i < accounts.size(); i++) {
+            row[0] = i +1;
+            row[1] = accounts.get(i).getId();
+            row[2] = accounts.get(i).getUsername();
+            row[3] = accounts.get(i).getPassword();
+            
+//                    + " - " + country.get(i).getRegion().getId()
+//                    + country.get(i).getRegion().getName();
+//                    .getRegionId()
+//                    + " - " + countries.get(i).getRegionId().getRegionName();
+            
+            model.addRow(row);
+        }
+    }
+    
     public void showTableAccount(String keyword) {
-        DefaultTableModel model = (DefaultTableModel) tableresult.getModel();
+        DefaultTableModel model = (DefaultTableModel)tableresult.getModel();
         model.setRowCount(0);
         Object[] row = new Object[4];
         List<Account> account = new ArrayList<>();
@@ -57,6 +79,24 @@ public class Accountview extends javax.swing.JInternalFrame {
             model.addRow(row);
         }
     }
+    
+    public void updateTableAccount(){       
+        DefaultTableModel model = (DefaultTableModel)tableresult.getModel();
+        model.setRowCount(0);
+        showTableAccount();
+    }
+    
+    public void updateTableAccount(String keyword){       
+        DefaultTableModel model = (DefaultTableModel)tableresult.getModel();
+        model.setRowCount(0);
+        if (keyword == "") {
+            showTableAccount();
+        }
+        showTableAccount(keyword);
+    }
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -99,10 +139,7 @@ public class Accountview extends javax.swing.JInternalFrame {
 
         tableresult.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "No", "ID", "Username", "Password"
@@ -238,11 +275,11 @@ public class Accountview extends javax.swing.JInternalFrame {
         if (jid.getText().equals("") || jusername.getText().equals("") || jpassword.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "DATA TIDAK BOLEH KOSONG");
         } else {
-            int confirm = JOptionPane.showConfirmDialog(this, "Ingin mengupdate data ?", "Konfirmasi", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            int confirm = JOptionPane.showConfirmDialog(this, "Ingin memasukkan data ?", "Konfirmasi", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (confirm == JOptionPane.YES_OPTION) {
                 JOptionPane.showMessageDialog(null, iac.save(jid.getText(), jusername.getText(), jpassword.getText()));
-                showTableAccount("");
-                showTableAccount(title);
+                updateTableAccount("");
+                resetTextAccount();
             }
         }
     }//GEN-LAST:event_btn_insertActionPerformed
@@ -255,8 +292,8 @@ public class Accountview extends javax.swing.JInternalFrame {
             int confirm = JOptionPane.showConfirmDialog(this, "Ingin mengupdate data ?", "Konfirmasi", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (confirm == JOptionPane.YES_OPTION) {
                 JOptionPane.showMessageDialog(null, iac.save(jid.getText(), jusername.getText(), jpassword.getText()));
-                showTableAccount("");
-                resetTextEmployee();
+                updateTableAccount();
+                resetTextAccount();
             }
         }
     }//GEN-LAST:event_btn_updateActionPerformed
@@ -266,14 +303,14 @@ public class Accountview extends javax.swing.JInternalFrame {
         int confirm = JOptionPane.showConfirmDialog(this, "Ingin mengupdate data ?", "Konfirmasi", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (confirm == JOptionPane.YES_OPTION) {
             JOptionPane.showMessageDialog(null, iac.delete(jid.getText()));
-            showTableAccount("");
-            resetTextEmployee();
+            updateTableAccount();
+            resetTextAccount();
         }
     }//GEN-LAST:event_btn_deleteActionPerformed
 
     private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
         // TODO add your handling code here:
-        resetTextEmployee();
+        resetTextAccount();
     }//GEN-LAST:event_btn_clearActionPerformed
 
     private void tableresultMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableresultMouseClicked
@@ -291,6 +328,7 @@ public class Accountview extends javax.swing.JInternalFrame {
     private void jsearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jsearchKeyReleased
         // TODO add your handling code here:
         showTableAccount(jsearch.getText());
+        System.out.println(jsearch.getText());
     }//GEN-LAST:event_jsearchKeyReleased
 
 
