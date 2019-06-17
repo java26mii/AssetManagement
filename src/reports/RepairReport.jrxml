@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cd0aaf37-4c76-4331-962d-cc8bf2fbc88c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="hql">
+		<![CDATA[from Loaning]]>
+	</queryString>
+	<field name="asset" class="models.Asset"/>
+	<field name="dateLoaning" class="java.util.Date"/>
+	<field name="dateReturn" class="java.util.Date"/>
+	<field name="employee" class="models.Employee"/>
+	<field name="id" class="java.lang.Long"/>
+	<field name="isDelete" class="java.lang.Character"/>
+	<field name="loaningStatusList" class="java.util.List"/>
+	<field name="note" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="148" y="28" width="258" height="40" uuid="708c8d9d-564e-4ec2-8a38-6f38691739a5"/>
+				<textElement>
+					<font fontName="Adobe Caslon Pro Bold" size="26"/>
+				</textElement>
+				<text><![CDATA[LOANING REPORT]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="16" y="2" width="100" height="20" uuid="4fcfa163-a6c6-444e-85a8-4185e0d23b7b"/>
+				<text><![CDATA[id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="116" y="2" width="100" height="20" uuid="edc628b5-54b5-48e3-b7ff-bae34684ad32"/>
+				<text><![CDATA[employee]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="216" y="2" width="100" height="20" uuid="864744a9-941f-420b-9dfc-dcde896bf8b2"/>
+				<text><![CDATA[dateLoaning]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="316" y="2" width="100" height="20" uuid="374b919b-4e90-4d8b-a3be-7be2fb033f81"/>
+				<text><![CDATA[dateReturn]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="416" y="2" width="100" height="20" uuid="0891f51b-1e37-4379-98c8-63214997b561"/>
+				<text><![CDATA[note]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="49" splitType="Stretch">
+			<textField>
+				<reportElement x="16" y="15" width="100" height="20" uuid="88194c91-29bd-4cbf-b2db-608e1701170f"/>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="116" y="15" width="100" height="20" uuid="9defbe8b-2096-470e-806f-b98215e32c9e"/>
+				<textFieldExpression><![CDATA[""+$F{employee}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="216" y="15" width="100" height="20" uuid="0ccb55ca-a820-4229-b26f-7e165e9b50ee"/>
+				<textFieldExpression><![CDATA[$F{dateLoaning}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="316" y="15" width="100" height="20" uuid="3c0c5af5-cc21-4820-99ff-bd5ee121730b"/>
+				<textFieldExpression><![CDATA[$F{dateReturn}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="416" y="15" width="100" height="20" uuid="14c11c70-f4e5-4d4a-bf67-b35af304977d"/>
+				<textFieldExpression><![CDATA[$F{note}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

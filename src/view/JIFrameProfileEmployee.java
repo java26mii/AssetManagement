@@ -16,12 +16,12 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author WINDOWS 10
  */
-public class JIFrameProfileDept extends javax.swing.JInternalFrame {
+public class JIFrameProfileEmployee extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form JIFrameProfile
      */
-    public JIFrameProfileDept() {
+    public JIFrameProfileEmployee() {
         initComponents();
     }
 

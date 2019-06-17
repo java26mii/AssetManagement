@@ -9,6 +9,7 @@ import daos.GeneralDAO;
 import icontrollers.IAssetController;
 import icontrollers.IRoleController;
 import idaos.IGeneralDAO;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -61,7 +62,7 @@ public class RoleController implements IRoleController{
     @Override
     public String save(String id, String name) {
         String result = "Data gagal disimpan";
-        if (rdao.saveOrDelete(new Role(new Long(id), name, new Character('0')), false)) {
+        if (rdao.saveOrDelete(new Role(new Long(id), name , new Character('0')), false)) {
             result = "Data berhasil di simpan";
         }
         return result;

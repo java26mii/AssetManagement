@@ -9,12 +9,12 @@ package view;
  *
  * @author WINDOWS 10
  */
-public class JFrameMDivision extends javax.swing.JFrame {
+public class JFrameEmployee extends javax.swing.JFrame {
 
     /**
      * Creates new form JFrameMDepartment
      */
-    public JFrameMDivision() {
+    public JFrameEmployee() {
         initComponents();
     }
 
@@ -48,7 +48,7 @@ public class JFrameMDivision extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel1.setFont(new java.awt.Font("Swis721 Hv BT", 1, 14)); // NOI18N
-        jLabel1.setText("MANAGER DIVISION");
+        jLabel1.setText("EMPLOYEE");
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/user_48.png"))); // NOI18N
 
@@ -62,21 +62,21 @@ public class JFrameMDivision extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(78, 78, 78)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel2))))
+                            .addComponent(jLabel2)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addComponent(jLabel1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(6, 6, 6)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
@@ -115,7 +115,7 @@ public class JFrameMDivision extends javax.swing.JFrame {
 
         jRStatus.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jRStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/table_48.png"))); // NOI18N
-        jRStatus.setText("REPAIR STATUS");
+        jRStatus.setText("LOANING REQUEST");
         jRStatus.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jRStatusMouseClicked(evt);
@@ -225,15 +225,15 @@ public class JFrameMDivision extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel8MouseClicked
 
     private void jProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jProfileMouseClicked
-        JIFrameProfileDiv profile = new JIFrameProfileDiv();
+        JIFrameProfileEmployee profile = new JIFrameProfileEmployee();
         this.jPanelAll.add(profile);
         profile.show();
     }//GEN-LAST:event_jProfileMouseClicked
 
     private void jRStatusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRStatusMouseClicked
-        JIFrameRepairAppr appr = new JIFrameRepairAppr();
-        this.jPanelAll.add(appr);
-        appr.show();
+        JIFrameLoaningReq loan = new JIFrameLoaningReq();
+        this.jPanelAll.add(loan);
+        loan.show();
     }//GEN-LAST:event_jRStatusMouseClicked
 
     /**
@@ -253,21 +253,23 @@ public class JFrameMDivision extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFrameMDivision.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFrameEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFrameMDivision.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFrameEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFrameMDivision.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFrameEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFrameMDivision.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFrameEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFrameMDivision().setVisible(true);
+                new JFrameEmployee().setVisible(true);
             }
         });
     }

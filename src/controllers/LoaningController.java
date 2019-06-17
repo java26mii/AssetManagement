@@ -68,7 +68,7 @@ public class LoaningController implements ILoaningController {
             date = formatter.parse(returnDate);
             if (lodao.saveOrDelete(new Loaning(Long.parseLong(id), new java.sql.Date(date.getTime()),
                    new java.sql.Date(date.getTime()), note, new Asset(Long.parseLong(id)),
-                    new Employee(Long.parseLong(id))), false)) {
+                    new Employee(Long.parseLong(id)), new Character('0')), false)) {
                 result = "Data berhasil di simpan";
             }
         } catch (ParseException ex) {

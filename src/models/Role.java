@@ -13,6 +13,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -33,6 +34,10 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Role.findByName", query = "SELECT r FROM Role r WHERE r.name = :name")
     , @NamedQuery(name = "Role.findByIsDelete", query = "SELECT r FROM Role r WHERE r.isDelete = :isDelete")})
 public class Role implements Serializable {
+
+    @Lob
+    @Column(name = "IMAGE")
+    private byte[] image;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -64,6 +69,7 @@ public class Role implements Serializable {
     public Role(Long id, String name) {
         this.id = id;
         this.name = name;
+//        this.image = image;
     }
 
     public Long getId() {
@@ -122,6 +128,14 @@ public class Role implements Serializable {
     @Override
     public String toString() {
         return "models.Role[ id=" + id + " ]";
+    }
+
+    public byte [] getImage() {
+        return image;
+    }
+
+    public void setImage(byte [] image) {
+        this.image = image;
     }
 
 }
