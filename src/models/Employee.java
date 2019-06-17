@@ -83,6 +83,13 @@ public class Employee implements Serializable {
         this.id = id;
     }
 
+    public Employee(Long id, String email) {
+        this.id = id;
+        this.email = email;
+    }
+    
+    
+
       public Employee(Long id, String firstName, String lastName, String email, long phoneNumber, Employee manager) {
         this.id = id;
         this.firstName = firstName;

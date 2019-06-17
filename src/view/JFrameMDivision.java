@@ -5,18 +5,30 @@
  */
 package view;
 
+import controllers.EmployeeController;
+import controllers.jobController;
+import icontrollers.IEmployee;
+import icontrollers.IjobController;
+import org.hibernate.SessionFactory;
+import tools.HibernateUtil;
+
 /**
  *
  * @author WINDOWS 10
  */
 public class JFrameMDivision extends javax.swing.JFrame {
-
+    SessionFactory factory = HibernateUtil.getSessionFactory();
+    IEmployee iac = new EmployeeController(factory);
+    IjobController ijc = new jobController(factory);
     /**
      * Creates new form JFrameMDepartment
      */
-    public JFrameMDivision() {
+    public JFrameMDivision(String id, String user) {
         initComponents();
+        
     }
+
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -31,7 +43,7 @@ public class JFrameMDivision extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lbl_greeting = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -53,8 +65,8 @@ public class JFrameMDivision extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/user_48.png"))); // NOI18N
 
-        jLabel3.setFont(new java.awt.Font("Swis721 Hv BT", 1, 14)); // NOI18N
-        jLabel3.setText("NAME");
+        lbl_greeting.setFont(new java.awt.Font("Swis721 Hv BT", 1, 14)); // NOI18N
+        lbl_greeting.setText("NAME");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -68,7 +80,7 @@ public class JFrameMDivision extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(78, 78, 78)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
+                            .addComponent(lbl_greeting)
                             .addComponent(jLabel2))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -80,7 +92,7 @@ public class JFrameMDivision extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3)
+                .addComponent(lbl_greeting)
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
@@ -255,9 +267,7 @@ public class JFrameMDivision extends javax.swing.JFrame {
     }//GEN-LAST:event_jRStatusMouseClicked
 
     private void jRepairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRepairMouseClicked
-        JIFrameLoaningReq repair = new JIFrameLoaningReq();
-        this.jPanelAll.add(repair);
-        repair.show();
+        
     }//GEN-LAST:event_jRepairMouseClicked
 
     /**
@@ -300,7 +310,6 @@ public class JFrameMDivision extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -312,5 +321,6 @@ public class JFrameMDivision extends javax.swing.JFrame {
     private javax.swing.JLabel jProfile;
     private javax.swing.JLabel jRStatus;
     private javax.swing.JLabel jRepair;
+    private javax.swing.JLabel lbl_greeting;
     // End of variables declaration//GEN-END:variables
 }

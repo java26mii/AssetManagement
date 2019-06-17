@@ -26,7 +26,9 @@ import java.util.List;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
+import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -144,6 +146,7 @@ public class JIFrameLoaningAppr extends javax.swing.JInternalFrame {
         btnSave = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
         BTN_SETUJU = new javax.swing.JButton();
+        txt_email = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(204, 204, 204));
         setClosable(true);
@@ -324,7 +327,10 @@ public class JIFrameLoaningAppr extends javax.swing.JInternalFrame {
                         .addComponent(jSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(206, 206, 206)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(287, 287, 287)
+                        .addComponent(txt_email, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -334,9 +340,11 @@ public class JIFrameLoaningAppr extends javax.swing.JInternalFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
+                .addGap(11, 11, 11)
+                .addComponent(txt_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel13)
                     .addComponent(jSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -406,6 +414,44 @@ public class JIFrameLoaningAppr extends javax.swing.JInternalFrame {
 
     private void BTN_SETUJUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_SETUJUActionPerformed
         // TODO add your handling code here:
+        final String auth_host = "smtp.gmail.com";
+        final String auth_port = "587";
+        final String auth_email = "bootcamp.java26@gmail.com";
+        final String auth_password = "Bootcamp26";
+
+        final Properties props = new Properties();
+        props.put("mail.smtp.host", auth_host);
+        props.put("mail.smtp.port", auth_port);
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+
+        try {
+            javax.mail.Session mailSession = javax.mail.Session.getInstance(props,
+                    new javax.mail.Authenticator() {
+                protected PasswordAuthentication
+                        getPasswordAuthentication() {
+                    return new PasswordAuthentication(auth_email, auth_password);
+                }
+            });
+
+            Message message = new MimeMessage(mailSession);
+            message.setFrom(new InternetAddress(auth_email));
+            message.setRecipients(Message.RecipientType.TO,
+                    InternetAddress.parse(txt_email.getText()));
+            message.setSubject("--- Notification ---");
+            message.setDescription("Selamat");
+//            message.setContent("");
+            MimeBodyPart messageBodyPart = new MimeBodyPart();
+
+//            messageBodyPart.setText(txtMessage.getText());
+            Transport.send(message);
+
+            JOptionPane.showMessageDialog(null, "Mail Send Successfully.");
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        getContentPane().add(BTN_SETUJU);
     }//GEN-LAST:event_BTN_SETUJUActionPerformed
 
 
@@ -428,5 +474,6 @@ public class JIFrameLoaningAppr extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jSearch;
     private javax.swing.JComboBox<String> jStatus;
     private javax.swing.JTable tblLStatus;
+    private javax.swing.JTextField txt_email;
     // End of variables declaration//GEN-END:variables
 }

@@ -10,6 +10,8 @@ import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import models.Account;
+import models.Employee;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -111,5 +113,70 @@ public class GeneralDAO<T> implements IGeneralDAO<T> {
         }
 
         return location;
+    }
+
+    @Override
+    public boolean register(T object) {
+        boolean result = false;
+        session = this.factory.openSession();
+        transaction = session.beginTransaction();
+        try {
+            session.save(object);
+            transaction.commit();
+            result = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
+
+        return result;
+    }
+
+    @Override
+    public Account getAccount(String username) {
+        Account account = null;
+        session = this.factory.openSession();
+        transaction = session.beginTransaction();
+        try {
+            String hql = "FROM " + t.getClass().getSimpleName() + " WHERE username = :username";
+            Query query = session.createQuery(hql);
+            query.setParameter("username", username);
+            account = (Account) query.uniqueResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
+
+        return account;
+    }
+
+    @Override
+    public Employee getEmployee(String email) {
+        Employee employee = null;
+        session = this.factory.openSession();
+        transaction = session.beginTransaction();
+        try {
+            String hql = "FROM Employee e WHERE e.email = :mail";
+            Query query = session.createQuery(hql);
+            query.setParameter("mail", email);
+            employee = (Employee) query.uniqueResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
+
+        return employee;
     }
 }

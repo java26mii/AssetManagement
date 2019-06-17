@@ -5,9 +5,16 @@
  */
 package view;
 
-import controllers.AccountregisterloginController;
-import icontrollers.IAccountregisterloginController;
+import controllers.AccountController;
+import controllers.AccountloginController;
+import controllers.EmployeeController;
+import icontrollers.IAccount;
+import icontrollers.IAccountloginController;
+import icontrollers.IEmployee;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import models.Account;
+import models.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -29,7 +36,8 @@ public class LoginForm extends javax.swing.JFrame {
     private Session session;
     private Transaction transaction;
     SessionFactory factory = HibernateUtil.getSessionFactory();
-    AccountregisterloginController iac = new AccountregisterloginController(factory);
+    IAccount iac = new AccountController(factory);
+    IEmployee iec = new EmployeeController(factory);
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -44,9 +52,8 @@ public class LoginForm extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         forgetpass = new javax.swing.JLabel();
         login_btn = new javax.swing.JButton();
-        register = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txt_username = new javax.swing.JTextField();
+        txt_password = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login Form");
@@ -67,36 +74,23 @@ public class LoginForm extends javax.swing.JFrame {
             }
         });
 
-        register.setFont(new java.awt.Font("Tahoma", 0, 9)); // NOI18N
-        register.setText("Don't have account? Register here");
-        register.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                registerMouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(login_btn)
+                    .addComponent(forgetpass)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(login_btn)
-                            .addComponent(forgetpass)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                                    .addComponent(jPasswordField1)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addComponent(register)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txt_username, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                            .addComponent(txt_password))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -105,33 +99,55 @@ public class LoginForm extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(forgetpass)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(login_btn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addComponent(register)
-                .addContainerGap())
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void registerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerMouseClicked
-       RegisterForm rf = new RegisterForm();
-       rf.setVisible(true);
-       rf.pack();rf.setLocationRelativeTo(null);
-       rf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-       this.dispose();
-    }//GEN-LAST:event_registerMouseClicked
-
     private void login_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_btnActionPerformed
         // TODO add your handling code here:
+            String account = txt_username.getText();
+        String password = String.valueOf(txt_password.getPassword());
+        String result = iac.login(account, password);
+        String id = "";
+        String user = "";
+        
+        if (result == "Login Success") {
+            JOptionPane.showMessageDialog(null, result);
+            
+            if (!account.contains("@")) {
+                Account acc = iac.getAccount(account);
+                if (acc != null) {
+                    id = String.valueOf(acc.getId());
+                    Employee emp = iec.getById(id);
+                    user = emp.getFirstName()+" "+emp.getLastName();
+                }
+            }else{
+                Employee emp = iac.getEmployee(account);
+                if (emp != null) {
+                    id = String.valueOf(emp.getId());
+                    user = emp.getFirstName()+" "+emp.getLastName();
+                    
+                }
+            }
+            
+            JFrameMDivision jFrameMDivision = new JFrameMDivision(id, user);
+            jFrameMDivision.setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, result);
+        }
+
     }//GEN-LAST:event_login_btnActionPerformed
 
     /**
@@ -176,9 +192,8 @@ public class LoginForm extends javax.swing.JFrame {
     private javax.swing.JLabel forgetpass;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton login_btn;
-    private javax.swing.JLabel register;
+    private javax.swing.JPasswordField txt_password;
+    private javax.swing.JTextField txt_username;
     // End of variables declaration//GEN-END:variables
 }

@@ -10,7 +10,7 @@ import models.Account;
  *
  * @author erik
  */
-public interface IAccountregisterloginController {
+public interface IAccountloginController {
     public boolean Validasi(Object keyword,boolean isId);
     
     public String register (String id, String username, String password);

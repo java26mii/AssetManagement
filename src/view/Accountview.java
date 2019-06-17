@@ -14,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 import models.Account;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import tools.BCrypt;
 import tools.HibernateUtil;
 
 /**
@@ -290,7 +291,8 @@ public class Accountview extends javax.swing.JInternalFrame {
         } else {
             int confirm = JOptionPane.showConfirmDialog(this, "Ingin mengupdate data ?", "Konfirmasi", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (confirm == JOptionPane.YES_OPTION) {
-                JOptionPane.showMessageDialog(null, iac.save(jid.getText(), jusername.getText(), jpassword.getText()));
+                JOptionPane.showMessageDialog(null, iac.save(jid.getText(), jusername.getText(), BCrypt.hashpw(jpassword.getText(), BCrypt.gensalt())));
+                
                 updateTableAccount();
                 resetTextAccount();
             }

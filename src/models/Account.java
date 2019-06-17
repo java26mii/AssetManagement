@@ -48,7 +48,7 @@ public class Account implements Serializable {
     @Column(name = "IS_DELETE")
     private Character isDelete;
     @JoinColumn(name = "ID", referencedColumnName = "ID", insertable = false, updatable = false)
-    @OneToOne(optional = false, fetch = FetchType.LAZY)
+    @OneToOne(optional = true, fetch = FetchType.LAZY)
     private Employee employee;
 
     public Account() {
@@ -111,6 +111,12 @@ public class Account implements Serializable {
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
+        if (null != employee) {
+            this.employee = employee;
+
+        } else {
+            this.employee = null;
+        }
     }
 
     @Override

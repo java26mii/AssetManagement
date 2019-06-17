@@ -7,6 +7,8 @@ package idaos;
 
 import java.math.BigDecimal;
 import java.util.List;
+import models.Account;
+import models.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -22,4 +24,10 @@ public interface IGeneralDAO<T> {
     public List<T> getData(Object keyword);
 
     public boolean saveOrDelete(T object, boolean isDelete);
+    
+    public boolean register(T object);
+    
+    public Account getAccount(String username);
+    
+    public Employee getEmployee(String email);
 }
