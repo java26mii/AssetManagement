@@ -19,7 +19,7 @@ public interface IAssetController {
 
     public List<Asset> search(Object keyword);
 
-    public String save(String Id, String name, String quantity,
+    public String save(String id, String name, String quantity,
             String category, String note);
    
     

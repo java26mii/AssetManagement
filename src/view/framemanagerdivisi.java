@@ -48,14 +48,12 @@ public class framemanagerdivisi extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setText("DASHBOARD MANAGER DIVISI");
 
-        jButton1.setIcon(new javax.swing.ImageIcon("E:\\metrodata\\tugas projek inventory barang\\view\\home.png")); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        btn_peminjaman.setIcon(new javax.swing.ImageIcon("E:\\metrodata\\tugas projek inventory barang\\view\\approval.png")); // NOI18N
         btn_peminjaman.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_peminjamanActionPerformed(evt);
@@ -88,7 +86,7 @@ public class framemanagerdivisi extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btn_peminjaman))
+                        .addComponent(btn_peminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(41, 41, 41)

@@ -67,7 +67,7 @@
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="8" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                   <Component id="jSearch" min="-2" pref="28" max="-2" attributes="0"/>
@@ -146,12 +146,10 @@
                   </Group>
                   <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jDate" max="32767" attributes="0"/>
-                          <Component id="jId" alignment="0" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="jId" alignment="0" min="-2" pref="32" max="-2" attributes="0"/>
                       <Component id="jLoaning" min="-2" pref="91" max="-2" attributes="0"/>
                       <Component id="jStatus" min="-2" pref="91" max="-2" attributes="0"/>
+                      <Component id="jDate" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="59" pref="156" max="32767" attributes="0"/>
               </Group>
@@ -176,11 +174,11 @@
                       <Component id="jStatus" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jDate" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jDate" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="34" max="32767" attributes="0"/>
+                  <EmptySpace pref="36" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -224,11 +222,6 @@
             <Property name="text" type="java.lang.String" value="LOANING DATE"/>
           </Properties>
         </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="jDate">
-          <Events>
-            <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="jDatePropertyChange"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JComboBox" name="jLoaning">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
@@ -241,6 +234,8 @@
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
+        </Component>
+        <Component class="com.toedter.calendar.JDateChooser" name="jDate">
         </Component>
       </SubComponents>
     </Container>

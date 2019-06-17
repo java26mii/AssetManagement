@@ -148,6 +148,7 @@ public class JIFrameAsset extends javax.swing.JInternalFrame {
 
         jLabel6.setText("NOTE");
 
+        jId.setEditable(false);
         jId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jIdActionPerformed(evt);
@@ -354,7 +355,7 @@ public class JIFrameAsset extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jCategoryActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        if (jId.getText().equals("") || jName.getText().equals("") || jQuantity.getText().equals("")
+        if (jName.getText().equals("") || jQuantity.getText().equals("")
                 || jCategory.getText().equals("") || jNote.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Isi semua kolom");
         } else {

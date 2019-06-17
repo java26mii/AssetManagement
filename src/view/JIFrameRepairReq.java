@@ -346,7 +346,7 @@ public class JIFrameRepairReq extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jCostActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        if (jId.getText().equals("") || jCost.getText().equals("") || jAsset.getSelectedItem() == ("CHOOSE")
+        if (jCost.getText().equals("") || jAsset.getSelectedItem() == ("CHOOSE")
                 || jEmployee.getSelectedItem() == ("CHOOSE") || jNote.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Isi semua kolom");
         } else {

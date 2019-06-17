@@ -57,9 +57,9 @@ public class AssetController implements IAssetController{
     }
 
     @Override
-    public String save(String Id, String name, String quantity, String category, String note) {
+    public String save(String id, String name, String quantity, String category, String note) {
         String result = "Data gagal disimpan";
-        if (adao.saveOrDelete(new Asset(new Long(Id), name, new Integer(quantity), category, note), false)) {
+        if (adao.saveOrDelete(new Asset(name, new Integer(quantity), category, note), false)) {
             result = "Data berhasil di simpan";
         }
         return result;

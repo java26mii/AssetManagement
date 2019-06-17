@@ -64,10 +64,10 @@ public class LoaningController implements ILoaningController {
     public String save(String id, String loaningDate, String returnDate, String note, String asset, String employee) {
         String result = "Data gagal disimpan";
         try {
-            date = formatter.parse(loaningDate);
-            date = formatter.parse(returnDate);
-            if (lodao.saveOrDelete(new Loaning(Long.parseLong(id), new java.sql.Date(date.getTime()),
-                   new java.sql.Date(date.getTime()), note, new Asset(Long.parseLong(id)),
+//            date = formatter.parse(loaningDate);
+//            date = formatter.parse(returnDate);
+            if (lodao.saveOrDelete(new Loaning(Long.parseLong(id), new java.sql.Date(formatter.parse(loaningDate).getTime()),
+                   new java.sql.Date(formatter.parse(returnDate).getTime()), note, new Asset(Long.parseLong(id)),
                     new Employee(Long.parseLong(id)), new Character('0')), false)) {
                 result = "Data berhasil di simpan";
             }

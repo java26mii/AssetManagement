@@ -100,8 +100,8 @@ public class JIFrameLoaningAppr extends javax.swing.JInternalFrame {
             row[0] = i + 1;
             row[1] = lstatus.get(i).getId();
             row[2] = formatter.format(lstatus.get(i).getDateLoaning());
-            row[3] = lstatus.get(i).getStatus().getName();
-            row[4] = lstatus.get(i).getLoaning().getAsset().getName();
+            row[3] = lstatus.get(i).getLoaning().getAsset().getName();
+            row[4] = lstatus.get(i).getStatus().getName();
 //            if (lstatus.get(i).getLoaning()== null) {
 //                row[4] = "";
 //            } else {
@@ -132,8 +132,8 @@ public class JIFrameLoaningAppr extends javax.swing.JInternalFrame {
         jId = new javax.swing.JTextField();
         jStatus = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
-        jDate = new com.toedter.calendar.JDateChooser();
         jLoaning = new javax.swing.JComboBox<>();
+        jDate = new com.toedter.calendar.JDateChooser();
         jPanel2 = new javax.swing.JPanel();
         btnSave = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
@@ -197,12 +197,6 @@ public class JIFrameLoaningAppr extends javax.swing.JInternalFrame {
 
         jLabel3.setText("LOANING DATE");
 
-        jDate.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                jDatePropertyChange(evt);
-            }
-        });
-
         jLoaning.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CHOOSE", " " }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -218,11 +212,10 @@ public class JIFrameLoaningAppr extends javax.swing.JInternalFrame {
                     .addComponent(jLabel4))
                 .addGap(47, 47, 47)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jId))
+                    .addComponent(jId, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLoaning, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(59, 156, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -241,10 +234,10 @@ public class JIFrameLoaningAppr extends javax.swing.JInternalFrame {
                     .addComponent(jLabel4)
                     .addComponent(jStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel3)
+                    .addComponent(jDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
@@ -319,7 +312,7 @@ public class JIFrameLoaningAppr extends javax.swing.JInternalFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel13)
                     .addComponent(jSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))

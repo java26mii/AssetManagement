@@ -44,7 +44,7 @@ public class Repair implements Serializable {
     private Long id;
     @Basic(optional = false)
     @Column(name = "COST")
-    private long cost;
+    private Long cost;
     @Basic(optional = false)
     @Column(name = "NOTE")
     private String note;
@@ -52,10 +52,10 @@ public class Repair implements Serializable {
     @Column(name = "IS_DELETE")
     private Character isDelete;
     @JoinColumn(name = "ASSET", referencedColumnName = "ID")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = true, fetch = FetchType.LAZY)
     private Asset asset;
     @JoinColumn(name = "EMPLOYEE", referencedColumnName = "ID")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = true, fetch = FetchType.LAZY)
     private Employee employee;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "repair", fetch = FetchType.LAZY)
     private List<RepairStatus> repairStatusList;
@@ -95,7 +95,7 @@ public class Repair implements Serializable {
         return cost;
     }
 
-    public void setCost(long cost) {
+    public void setCost(Long cost) {
         this.cost = cost;
     }
 

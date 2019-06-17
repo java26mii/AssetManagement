@@ -12,10 +12,13 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -38,6 +41,8 @@ public class Asset implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "asset_generator")
+    @SequenceGenerator(name = "asset_generator", sequenceName = "asset_seq")
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
@@ -67,6 +72,13 @@ public class Asset implements Serializable {
 
     public Asset(Long id, String name, int quantity, String category, String note) {
         this.id = id;
+        this.name = name;
+        this.quantity = quantity;
+        this.category = category;
+        this.note = note;
+    }
+
+    public Asset(String name, int quantity, String category, String note) {
         this.name = name;
         this.quantity = quantity;
         this.category = category;
@@ -155,5 +167,5 @@ public class Asset implements Serializable {
     public String toString() {
         return "models.Asset[ id=" + id + " ]";
     }
-    
+
 }

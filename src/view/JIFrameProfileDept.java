@@ -37,22 +37,29 @@ public class JIFrameProfileDept extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jImage = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("PROFILE");
 
-        jButton1.setText("browse");
+        jButton1.setText("Browse");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jImage.setText("jLabel2");
+        jImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/user_48.png"))); // NOI18N
+
+        jLabel2.setText("UPLOAD PHOTO :");
+
+        jButton2.setText("Save");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -61,25 +68,34 @@ public class JIFrameProfileDept extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(596, 596, 596)
+                        .addGap(283, 283, 283)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addComponent(jImage)
+                        .addGap(107, 107, 107)
+                        .addComponent(jImage))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(286, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(84, 84, 84)
+                .addGap(26, 26, 26)
+                .addComponent(jImage)
+                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jImage))
-                .addContainerGap(287, Short.MAX_VALUE))
+                    .addComponent(jLabel2))
+                .addGap(65, 65, 65)
+                .addComponent(jButton2)
+                .addContainerGap(279, Short.MAX_VALUE))
         );
 
         pack();
@@ -95,7 +111,7 @@ public class JIFrameProfileDept extends javax.swing.JInternalFrame {
 
         try {
             Image image = ImageIO.read(file);
-            ImageIcon imageIcon = new ImageIcon(image.getScaledInstance(150, 250, 300));
+            ImageIcon imageIcon = new ImageIcon(image.getScaledInstance(200, 250, 300));
 
             jImage.setIcon(imageIcon);
             jImage.setText("");
@@ -107,7 +123,9 @@ public class JIFrameProfileDept extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jImage;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

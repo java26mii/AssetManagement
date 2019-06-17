@@ -13,6 +13,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import models.Employee;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import tools.HibernateUtil;
 
@@ -21,14 +22,15 @@ import tools.HibernateUtil;
  * @author erik
  */
 public class employee extends javax.swing.JInternalFrame {
-    SessionFactory factory = HibernateUtil.getSessionFactory();
-    IEmployee iej = new EmployeeController(factory);
+    private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+    private Session session = null;
+    IEmployee iej = new EmployeeController(sessionFactory);
     /**
      * Creates new form employee
      */
     public employee() {
         initComponents();
-        showTableEmployee("");
+        showTableEmployee();
     }
     
     public void resetTextEmployee() {
@@ -43,8 +45,31 @@ public class employee extends javax.swing.JInternalFrame {
         btn_insert.setEnabled(true);
     }
     
+     public void showTableEmployee(){
+        DefaultTableModel model = (DefaultTableModel)jTableresult.getModel();        
+        Object[] row = new Object[7];
+        List<Employee> employees = new ArrayList<>();
+        employees = iej.getAll();
+        for (int i = 0; i < employees.size(); i++) {
+            row[0] = i +1;
+            row[1]=employees.get(i).getId();
+            row[1] = employees.get(i).getId();
+            row[2] = employees.get(i).getFirstName();
+            row[3] = employees.get(i).getLastName();
+            row[4] = employees.get(i).getPhoneNumber();
+            row[5] = employees.get(i).getManager().getFirstName()+" "+employees.get(i).getManager().getLastName();
+            row[6] = employees.get(i).getEmail(); 
+//                    + " - " + country.get(i).getRegion().getId()
+//                    + country.get(i).getRegion().getName();
+//                    .getRegionId()
+//                    + " - " + countries.get(i).getRegionId().getRegionName();
+            
+            model.addRow(row);
+        }
+    }
+    
     public void showTableEmployee(String keyword) {
-        DefaultTableModel model = (DefaultTableModel) jTableresult.getModel();
+        DefaultTableModel model = (DefaultTableModel)jTableresult.getModel();
         model.setRowCount(0);
         Object[] row = new Object[7];
         List<Employee> employees = new ArrayList<>();
@@ -62,6 +87,22 @@ public class employee extends javax.swing.JInternalFrame {
             row[6] = employees.get(i).getEmail();
             model.addRow(row);
         }
+    }
+    
+    
+    public void updateTableAccount(){       
+        DefaultTableModel model = (DefaultTableModel)jTableresult.getModel();
+        model.setRowCount(0);
+        showTableEmployee();
+    }
+    
+    public void updateTableAccount(String keyword){       
+        DefaultTableModel model = (DefaultTableModel)jTableresult.getModel();
+        model.setRowCount(0);
+        if (keyword == "") {
+            showTableEmployee();
+        }
+        showTableEmployee(keyword);
     }
 
     /**
@@ -126,10 +167,7 @@ public class employee extends javax.swing.JInternalFrame {
 
         jTableresult.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "No", "Id", "First Name", "Last Name", "Phone Number", "Manager", "Email"
@@ -305,8 +343,8 @@ public class employee extends javax.swing.JInternalFrame {
             int confirm = JOptionPane.showConfirmDialog(this, "Ingin mengupdate data ?", "Konfirmasi", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (confirm == JOptionPane.YES_OPTION) {
                 JOptionPane.showMessageDialog(null, iej.save(jid.getText(), jfirst_name.getText(), jlast_name.getText(), jphone_number.getText(), jmanager.getText(), jemail.getText()));
-                showTableEmployee("");
-                showTableEmployee(title);
+                updateTableAccount("");
+                resetTextEmployee();
             }
         }
     }//GEN-LAST:event_btn_insertActionPerformed
@@ -321,7 +359,7 @@ public class employee extends javax.swing.JInternalFrame {
             int confirm = JOptionPane.showConfirmDialog(this, "Ingin mengupdate data ?", "Konfirmasi", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (confirm == JOptionPane.YES_OPTION) {
                 JOptionPane.showMessageDialog(null, iej.save(jid.getText(), jfirst_name.getText(), jlast_name.getText(), jphone_number.getText(), jmanager.getText(), jemail.getText()));
-                showTableEmployee("");
+                updateTableAccount();
                 resetTextEmployee();
             }
         }
@@ -332,7 +370,7 @@ public class employee extends javax.swing.JInternalFrame {
         int confirm = JOptionPane.showConfirmDialog(this, "Ingin mengupdate data ?", "Konfirmasi", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (confirm == JOptionPane.YES_OPTION) {
             JOptionPane.showMessageDialog(null, iej.delete(jid.getText()));
-            showTableEmployee("");
+            updateTableAccount();
             resetTextEmployee();
         }
     }//GEN-LAST:event_btn_deleteActionPerformed
@@ -344,7 +382,6 @@ public class employee extends javax.swing.JInternalFrame {
 
     private void jsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jsearchActionPerformed
         // TODO add your handling code here:
-        showTableEmployee(jsearch.getText());
     }//GEN-LAST:event_jsearchActionPerformed
 
     private void jTableresultMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableresultMouseClicked
@@ -365,6 +402,7 @@ public class employee extends javax.swing.JInternalFrame {
     private void jsearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jsearchKeyReleased
         // TODO add your handling code here:
         showTableEmployee(jsearch.getText());
+        System.out.println(jsearch.getText());
     }//GEN-LAST:event_jsearchKeyReleased
 
 

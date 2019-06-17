@@ -66,7 +66,7 @@ public class JIFrameRole extends javax.swing.JInternalFrame {
     public void showTable(String key) {
         DefaultTableModel model = (DefaultTableModel) tblRole.getModel();
         model.setRowCount(0);
-        Object[] row = new Object[12];
+        Object[] row = new Object[3];
         List<Role> role = new ArrayList<>();
         if (key == "") {
             role = roco.getAll();
@@ -100,8 +100,6 @@ public class JIFrameRole extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jId = new javax.swing.JTextField();
         jName = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jImage = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btnSave = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
@@ -149,15 +147,6 @@ public class JIFrameRole extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton1.setText("browse");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jImage.setText("jLabel2");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -174,11 +163,7 @@ public class JIFrameRole extends javax.swing.JInternalFrame {
                         .addContainerGap(359, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jId, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jImage)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)
-                        .addGap(45, 45, 45))))
+                        .addGap(45, 359, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,11 +171,8 @@ public class JIFrameRole extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton1)
-                        .addComponent(jImage)))
-                .addGap(18, 18, 18)
+                    .addComponent(jId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -354,33 +336,12 @@ public class JIFrameRole extends javax.swing.JInternalFrame {
         showTable(jSearch.getText());
     }//GEN-LAST:event_jSearchKeyTyped
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JFileChooser chooser = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG, GIF, and PNG Images", "jpg", "gif", "png");
-        chooser.setFileFilter(filter);
-
-        chooser.showOpenDialog(null);
-        File file = chooser.getSelectedFile();
-
-        try {
-            Image image = ImageIO.read(file);
-            ImageIcon imageIcon = new ImageIcon(image.getScaledInstance(150, 250, 300));
-
-            jImage.setIcon(imageIcon);
-            jImage.setText("");
-
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSave;
-    private javax.swing.JButton jButton1;
     private javax.swing.JTextField jId;
-    private javax.swing.JLabel jImage;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;

@@ -49,7 +49,6 @@ public class JIFrameStatus extends javax.swing.JInternalFrame {
     public void resetText() {
         jId.setText("");
         jName.setText("");
-        jIsDelete.setText("");
         btnSave.setEnabled(true);
 
 //        btnUpdate.setEnabled(true);
@@ -90,10 +89,8 @@ public class JIFrameStatus extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jId = new javax.swing.JTextField();
         jName = new javax.swing.JTextField();
-        jIsDelete = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         btnSave = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
@@ -129,8 +126,7 @@ public class JIFrameStatus extends javax.swing.JInternalFrame {
 
         jLabel3.setText("NAME");
 
-        jLabel4.setText("IS DELETE");
-
+        jId.setEditable(false);
         jId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jIdActionPerformed(evt);
@@ -143,12 +139,6 @@ public class JIFrameStatus extends javax.swing.JInternalFrame {
             }
         });
 
-        jIsDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jIsDeleteActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -157,11 +147,9 @@ public class JIFrameStatus extends javax.swing.JInternalFrame {
                 .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel3))
                 .addGap(47, 47, 47)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jIsDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jId, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jName, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(359, Short.MAX_VALUE))
@@ -177,11 +165,7 @@ public class JIFrameStatus extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jIsDelete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
@@ -299,12 +283,8 @@ public class JIFrameStatus extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jNameActionPerformed
 
-    private void jIsDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jIsDeleteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jIsDeleteActionPerformed
-
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        if (jId.getText().equals("") || jName.getText().equals("")) {
+        if (jName.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Isi semua kolom");
         } else {
             int confirm = JOptionPane.showConfirmDialog(this, "Kamu yakin mau menambah data?", "Konfirmasi", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
@@ -351,12 +331,10 @@ public class JIFrameStatus extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSave;
     private javax.swing.JTextField jId;
-    private javax.swing.JTextField jIsDelete;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField jName;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

@@ -96,7 +96,6 @@ public class JIFrameLoaningReq extends javax.swing.JInternalFrame {
             row[4] = loaning.get(i).getNote();
             row[5] = loaning.get(i).getAsset().getName();
             row[6] = loaning.get(i).getEmployee().getFirstName();
-
             model.addRow(row);
         }
     }
